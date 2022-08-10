@@ -5,11 +5,14 @@ from drivers import *
 from os import listdir
 import sys
 
-brick.configure() # config the brick
+brick.configure()
+
+motor = motor("A")
+print(devices)
 
 try:
-    while True:
-        print(devices)
+    motor.runCommand("run-to-abs-pos", speed=200, angle=90)
 except KeyboardInterrupt:
     print("exiting")
+    brick.resetAll()
     sys.exit(0)

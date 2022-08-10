@@ -22,14 +22,12 @@ def readFile(path):
 
 def writeFile(path, data):
     f = open(path, "w")
-    f.write(data)
+    f.write(str(data))
     f.close()
 
 
 class brick:
-    def __init__(ev3):
-        pass
-
+    @staticmethod
     def configure(): # finds all connectet devices and create defaults
         for dir in listdir(rootmotor): #find all avalable motors and save the data
             devices[readFile(rootmotor + "/" + str(dir) + "/address")] = {
@@ -46,11 +44,20 @@ class brick:
                 "decimals": str(rootsensor + "/" + str(dir) + "/decimals"),
                 "num_values": str(rootsensor + "/" + str(dir) + "/num_values")
             }
+        brick.resetAll()
+    
+    @staticmethod
+    def resetAll():
+        for key in devices:
+            if "out" in key:
+                writeFile(devices[key]["path"] + "/command", "reset")
+            else:
+                continue
 
 # class to control a motor
 class motor:
-    def __init__(lego_motor, port = "lego-ports:OutA"):
-        lego_motor.port = "logo-ports:Out" + str(port)
+    def __init__(lego_motor, port = "ev3-ports:outA"):
+        lego_motor.port = "ev3-ports:out" + str(port)
     
     def getState(lego_motor):
         return readFile(devices[lego_motor.port]["path"] + "/state")
@@ -63,7 +70,7 @@ class motor:
         writeFile(devices[lego_motor.port]["path"] + "/position_sp", angle)
         writeFile(devices[lego_motor.port]["path"] + "/time_sp", time)
         writeFile(devices[lego_motor.port]["path"] + "/duty_cycle_sp", duty)
-        writeFile(devices[lego_motor.port]["paht"] + "/command", command)
+        writeFile(devices[lego_motor.port]["path"] + "/command", command)
     
     def stop(lego_motor):
         try: 
