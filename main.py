@@ -10,7 +10,7 @@ import sys
 
 brick.configure()
 
-US = sensor(port.in4)
+US = sensor(address=port.in4)
 US.setMode("US-DIST-CM")
 
 try:
