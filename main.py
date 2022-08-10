@@ -2,7 +2,6 @@
 # * python3 /home/robot/MindstormsRobot/main.py
 
 from drivers.brick import *
-from drivers.motor import motor
 from drivers.sensor import *
 
 from os import listdir
@@ -11,12 +10,12 @@ import sys
 
 brick.configure()
 
-motor = motor("A")
-motor.setStopAction()
+US = sensor("4")
+US.setMode("US-DIST-CM")
+
 try:
     while True:
-        motor.runCommand("run-to-rel-pos", speed=200, angle=90)
-        sleep(1)
+        print(str(US.getValue()) + " CM")
 except KeyboardInterrupt:
     print("exiting")
     brick.resetAll()

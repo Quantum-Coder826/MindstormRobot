@@ -1,5 +1,5 @@
 
-from brick import *
+from drivers.brick import writeFile, readFile, devices
 
 # class to control a motor
 class motor:
