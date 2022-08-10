@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # * python3 /home/robot/MindstormsRobot/main.py
 
-from drivers import *
+import brick, motor, sensor
 from os import listdir
 from time import sleep
 import sys
