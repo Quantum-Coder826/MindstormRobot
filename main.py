@@ -3,15 +3,14 @@
 
 from drivers.brick import *
 from drivers.sensor import *
-import drivers.ports
 
 from os import listdir
 from time import sleep
 import sys
 
-brick.configure()
+brick.configure(ports.in4)
 
-US = sensor(ports.)
+US = sensor(ports)
 US.setMode("US-DIST-CM")
 
 try:
