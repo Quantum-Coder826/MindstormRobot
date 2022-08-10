@@ -8,9 +8,9 @@ from os import listdir
 from time import sleep
 import sys
 
-brick.configure(ports.in4)
+brick.configure()
 
-US = sensor(ports)
+US = sensor(ports.in4)
 US.setMode("US-DIST-CM")
 
 try:
