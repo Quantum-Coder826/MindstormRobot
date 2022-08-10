@@ -3,15 +3,17 @@
 
 from drivers import *
 from os import listdir
+from time import sleep
 import sys
 
 brick.configure()
 
 motor = motor("A")
-print(devices)
-
+motor.setStopAction()
 try:
-    motor.runCommand("run-to-abs-pos", speed=200, angle=90)
+    while True:
+        motor.runCommand("run-to-rel-pos", speed=200, angle=90)
+        sleep(1)
 except KeyboardInterrupt:
     print("exiting")
     brick.resetAll()

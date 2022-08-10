@@ -54,6 +54,8 @@ class brick:
             else:
                 continue
 
+
+
 # class to control a motor
 class motor:
     def __init__(lego_motor, port = "ev3-ports:outA"):
@@ -72,6 +74,9 @@ class motor:
         writeFile(devices[lego_motor.port]["path"] + "/duty_cycle_sp", duty)
         writeFile(devices[lego_motor.port]["path"] + "/command", command)
     
+    def setStopAction(lego_motor, stopAcion = "brake"):
+        writeFile(devices[lego_motor.port]["path"] + "/stop_action", stopAcion)
+
     def stop(lego_motor):
         try: 
             writeFile(devices[lego_motor.port]["path"] + "/command", "stop")
