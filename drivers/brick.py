@@ -44,3 +44,25 @@ class brick:
                 writeFile(devices[key]["path"] + "/command", "reset")
             else:
                 continue
+
+
+class port:
+    # all the output ports
+    @staticmethod
+    def outA(): return "ev3-ports:outA"
+    @staticmethod
+    def outB(): return "ev3-ports:outB"
+    @staticmethod
+    def outC(): return "ev3-ports:outC"
+    @staticmethod
+    def outD(): return "ev3-ports:outD"
+    
+    # all the input ports
+    @staticmethod
+    def in1(): return "ev3-ports:in1"
+    @staticmethod
+    def in2(): return "ev3-ports:in2"
+    @staticmethod
+    def in3(): return "ev3-ports:in3"
+    @staticmethod
+    def in4(): return "ev3-ports:in4"

@@ -2,7 +2,7 @@ from drivers.brick import writeFile, readFile, devices
 
 class sensor:
     def __init__(lego_sensor, port = "ev3-ports:in1"):
-        lego_sensor.port = "ev3-ports:in" + str(port)
+        lego_sensor.port = port
     
     @staticmethod
     def reload(target): #reloads a sensor attached to a given port

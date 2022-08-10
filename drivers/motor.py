@@ -4,7 +4,7 @@ from drivers.brick import writeFile, readFile, devices
 # class to control a motor
 class motor:
     def __init__(lego_motor, port = "ev3-ports:outA"):
-        lego_motor.port = "ev3-ports:out" + str(port)
+        lego_motor.port = port
     
     def getState(lego_motor):
         return readFile(devices[lego_motor.port]["path"] + "/state")
