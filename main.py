@@ -8,7 +8,7 @@ import sys
 try:
     while True:
         empty = 0
-
+        stuff.
 except KeyboardInterrupt:
     print("exiting")
     sys.exit(0)
