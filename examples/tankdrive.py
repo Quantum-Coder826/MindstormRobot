@@ -21,7 +21,6 @@ IR.setMode("IR-REMOTE")
 leftmotor.runDuty(0)
 rightmotor.runDuty(0)
 
-
 try:
     while True:
         key = IR.getValue() # no argument os channel 1 will be read
