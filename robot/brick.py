@@ -1,7 +1,8 @@
 from os import listdir
 
-rootmotor = "/sys/class/tacho-motor"
-rootsensor = "/sys/class/lego-sensor"
+motorpath = "/sys/class/tacho-motor"
+sensorpath = "/sys/class/lego-sensor"
+ledpath = ["/sys/class/leds/led0:green:brick-status", "/sys/class/leds/led0:red:brick-status", "/sys/class/leds/led1:green:brick-status", "/sys/class/leds/led1:red:brick-status"]
 devices = {}
 
 # general functions
@@ -19,20 +20,20 @@ def writeFile(path, data):
 
 class ev3:
     def __init__(lego_brick):
-        for dir in listdir(rootmotor): #find all avalable motors and save the data
-            devices[readFile(rootmotor + "/" + str(dir) + "/address")] = {
-                "path": str(rootmotor + "/" +str(dir)),
-                "driver_name": str(readFile(rootmotor + "/" + str(dir) + "/driver_name")),
-                "count_per_rot": str(readFile(rootmotor + "/" + str(dir) + "/count_per_rot")),
-                "max_speed": str(readFile(rootmotor + "/" + str(dir) + "/max_speed"))
+        for dir in listdir(motorpath): #find all avalable motors and save the data
+            devices[readFile(motorpath + "/" + str(dir) + "/address")] = {
+                "path": str(motorpath + "/" +str(dir)),
+                "driver_name": str(readFile(motorpath + "/" + str(dir) + "/driver_name")),
+                "count_per_rot": str(readFile(motorpath + "/" + str(dir) + "/count_per_rot")),
+                "max_speed": str(readFile(motorpath + "/" + str(dir) + "/max_speed"))
             }
         
-        for dir in listdir(rootsensor): #inf all avalable sensor and save the data
-            devices[readFile(rootsensor + "/" + str(dir) + "/address")] = {
-                "path": str(rootsensor + "/" + str(dir)),
-                "driver_name": str(rootsensor + "/" + str(dir) + "/driver_name"),
-                "decimals": str(rootsensor + "/" + str(dir) + "/decimals"),
-                "num_values": str(rootsensor + "/" + str(dir) + "/num_values")
+        for dir in listdir(sensorpath): #inf all avalable sensor and save the data
+            devices[readFile(sensorpath + "/" + str(dir) + "/address")] = {
+                "path": str(sensorpath + "/" + str(dir)),
+                "driver_name": str(sensorpath + "/" + str(dir) + "/driver_name"),
+                "decimals": str(sensorpath + "/" + str(dir) + "/decimals"),
+                "num_values": str(sensorpath + "/" + str(dir) + "/num_values")
             }
         ev3.resetAll()
     
@@ -43,6 +44,12 @@ class ev3:
                 writeFile(devices[key]["path"] + "/command", "reset")
             else:
                 continue
+
+    def setLed(led = 0, value = 255): # changes the brightness of a led
+        writeFile(ledpath[led] + "/brightness", value)
+
+    # todo: figure out how the hell to read the buttons (https://docs.ev3dev.org/projects/lego-linux-drivers/en/ev3dev-stretch/ev3.html#buttons)
+
 
 class ports:
     # all the ports
@@ -55,3 +62,10 @@ class ports:
     in2 = "ev3-ports:in2"
     in3 = "ev3-ports:in3"
     in4 = "ev3-ports:in4"
+
+class led:
+    # led codes
+    leftGreen = 0
+    leftRed = 1
+    rightGreen = 2
+    rightRed = 3
