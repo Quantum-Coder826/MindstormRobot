@@ -6,7 +6,7 @@ devices = {}
 
 # general functions
 def readFile(path):
-    f = open(path, "r")
+    f = open(str(path), "r")
     data = f.read()
     f.close()
     data = data.strip()  
