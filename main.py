@@ -1,11 +1,28 @@
 from robot.brick import *
-
-from time import sleep
+from robot.motor import *
+from robot.sensor import *
 
 brick = mindstroms()
-while True:
-    brick.setLed(led.leftGreen, 0)
-    brick.setLed(led.rightGreen, 0)
-    sleep(1)
-    brick.setLed(led.leftGreen, 255)
-    brick.setLed(led.rightGreen, 255)
+
+leftMotor = motor(ports.outA)
+rightMotor = motor(ports.outD)
+
+sonar = sensor(ports.in4)
+
+leftMotor.runDuty()
+rightMotor.runDuty()
+
+sonar.setMode("US-DIST-CM")
+
+rightMotor.setDuty(50)
+rightMotor.setDuty(50)
+
+try:
+    while True:
+        if sonar.getValue() <= 7.0:
+            leftMotor.setDuty(-50)
+        rightMotor.setDuty(50)
+except KeyboardInterrupt:
+    print(" exiting ")
+    brick.resetAll()
+    exit()

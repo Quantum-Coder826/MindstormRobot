@@ -25,17 +25,17 @@ class motor:
         writeFile(devices[lego_motor.address]["path"] + "/ramp_up_sp", rampUp)
         writeFile(devices[lego_motor.address]["path"] + "/ramp_down_sp" , rampDown)
     
-    def runRelPos(lego_motor, angle):
+    def runRelPos(lego_motor, angle = 0):
         writeFile(devices[lego_motor.address]["path"] + "/position_sp", angle)
     
-    def runAbsPos(lego_motor, angle):
+    def runAbsPos(lego_motor, angle = 0):
         writeFile(devices[lego_motor.address]["path"] + "/position_sp", angle)
 
-    def runDuty(lego_motor, duty):
+    def runDuty(lego_motor, duty = 0):
         writeFile(devices[lego_motor.address]["path"] + "/duty_cycle_sp", duty)
         writeFile(devices[lego_motor.address]["path"] + "/command", "run-direct")
     
-    def runTimed(lego_motor, time, speed):
+    def runTimed(lego_motor, time = 0, speed = 0):
         writeFile(devices[lego_motor.address]["path"] + "/time_sp", time)
         writeFile(devices[lego_motor.address]["path"] + "/speed_sp", speed)
 
