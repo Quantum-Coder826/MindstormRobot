@@ -22,3 +22,9 @@ class sensor:
     
     def getUnit(lego_sensor):
         return readFile(devices[lego_sensor.address]["path"] + "/units")
+    
+    def isPressed(lego_sensor):
+        if readFile(devices[lego_sensor.address]["path"] + "/value0") == 1:
+            return True
+        if readFile(devices[lego_sensor.address]["paht"] + "/value0") == 0:
+            return False
