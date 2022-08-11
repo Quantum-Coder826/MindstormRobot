@@ -37,7 +37,6 @@ class ev3:
             }
         ev3.resetAll()
     
-    @staticmethod
     def resetAll(): # resets all avalable motors, sensors don't need resetting
         for key in devices:
             if "out" in key:
@@ -45,8 +44,8 @@ class ev3:
             else:
                 continue
 
-    def setLed(led = 0, value = 255): # changes the brightness of a led
-        writeFile(ledpath[led] + "/brightness", value)
+    def setLed(lego_brick, target = 0, value = 255): # changes the brightness of a led
+        writeFile(ledpath[target] + "/brightness", value)
 
     # todo: figure out how the hell to read the buttons (https://docs.ev3dev.org/projects/lego-linux-drivers/en/ev3dev-stretch/ev3.html#buttons)
 
