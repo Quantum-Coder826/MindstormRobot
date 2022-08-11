@@ -3,7 +3,7 @@ This file was made by Berend Veldthuis
 the code is respolable for contorling lego motors 45502 and 2550113
 The code is based on ev3dev: https://docs.ev3dev.org/projects/lego-linux-drivers/en/ev3dev-stretch/motors.html#sysfs
 """
-from drivers.brick import writeFile, readFile, devices
+from robot.brick import writeFile, readFile, devices
 
 class motor:
     def __init__(lego_motor, address = "ev3-ports:outA"):
