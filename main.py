@@ -9,19 +9,17 @@ rightMotor = motor(ports.outD)
 
 sonar = sensor(ports.in4)
 
-leftMotor.runDuty()
-rightMotor.runDuty()
+leftMotor.runDuty(50)
+rightMotor.runDuty(50)
 
 sonar.setMode("US-DIST-CM")
-
-rightMotor.setDuty(50)
-rightMotor.setDuty(50)
 
 try:
     while True:
         if sonar.getValue() <= 7.0:
             leftMotor.setDuty(-50)
-        rightMotor.setDuty(50)
+        else:
+            leftMotor.setDuty(50)
 except KeyboardInterrupt:
     print(" exiting ")
     brick.resetAll()
