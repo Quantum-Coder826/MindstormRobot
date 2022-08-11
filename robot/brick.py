@@ -18,8 +18,7 @@ def writeFile(path, data):
     f.close()
 
 class brick:
-    @staticmethod
-    def configure(): # finds all connectet devices and create defaults
+    def __init__(lego_brick):
         for dir in listdir(rootmotor): #find all avalable motors and save the data
             devices[readFile(rootmotor + "/" + str(dir) + "/address")] = {
                 "path": str(rootmotor + "/" +str(dir)),
@@ -38,7 +37,7 @@ class brick:
         brick.resetAll()
     
     @staticmethod
-    def resetAll():
+    def resetAll(): # resets all avalable motors, sensors don't need resetting
         for key in devices:
             if "out" in key:
                 writeFile(devices[key]["path"] + "/command", "reset")
