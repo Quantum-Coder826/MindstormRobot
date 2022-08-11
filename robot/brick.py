@@ -18,7 +18,7 @@ def writeFile(path, data):
     f.write(str(data))
     f.close()
 
-class ev3:
+class mindstroms:
     def __init__(lego_brick):
         for dir in listdir(motorpath): #find all avalable motors and save the data
             devices[readFile(motorpath + "/" + str(dir) + "/address")] = {
@@ -35,7 +35,7 @@ class ev3:
                 "decimals": str(sensorpath + "/" + str(dir) + "/decimals"),
                 "num_values": str(sensorpath + "/" + str(dir) + "/num_values")
             }
-        ev3.resetAll()
+        mindstroms.resetAll()
     
     def resetAll(): # resets all avalable motors, sensors don't need resetting
         for key in devices:

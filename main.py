@@ -2,7 +2,7 @@ from robot.brick import *
 
 from time import sleep
 
-brick = ev3()
+brick = mindstroms()
 while True:
     brick.setLed(led.leftGreen, 0)
     brick.setLed(led.rightGreen, 0)
