@@ -8,48 +8,33 @@ from robot.brick import writeFile, readFile, devices
 class motor:
     def __init__(lego_motor, address = "ev3-ports:outA"):
         lego_motor.address = address
+    """
+    TODO:
+        ! sendcommand func
+        ! run-to-abs-pos func
+        ! run-to-rel-pos func
+        ! run-timed func
+        ! run-direct func
+        ! stop func
+        ! reset func
+
+        * set duty cycle func
+        * set position func
+        * set speed func
+        * get state func
+        * set stop action
+    """
+    def setDuty(lego_motor, duty = 0):
+        writeFile(devices[lego_motor.address]["path"] + "/duty_cycle_sp", duty)
     
-    def getState(lego_motor):
-        return readFile(devices[lego_motor.address]["path"] + "/state")
-
-    def getSpeed(lego_motor):
-        return readFile(devices[lego_motor.address]["path"] + "/speed")
-
+    def setPostion(lego_motor, angle = 0):
+        writeFile(devices[lego_motor.address]["path"] + "/postion_sp", angle)
+    
     def setSpeed(lego_motor, speed = 0):
         writeFile(devices[lego_motor.address]["path"] + "/speed_sp", speed)
-    
-    def setDuty(lego_motor, duty = 0):
-        writeFile(devices[lego_motor.address]["path"] + "/duty_cycl_sp", duty)
-    
-    def setRamps(lego_motor, rampUp, rampDown):
-        writeFile(devices[lego_motor.address]["path"] + "/ramp_up_sp", rampUp)
-        writeFile(devices[lego_motor.address]["path"] + "/ramp_down_sp" , rampDown)
-    
-    def runRelPos(lego_motor, angle = 0):
-        writeFile(devices[lego_motor.address]["path"] + "/position_sp", angle)
-    
-    def runAbsPos(lego_motor, angle = 0):
-        writeFile(devices[lego_motor.address]["path"] + "/position_sp", angle)
 
-    def runDuty(lego_motor, duty = 0):
-        writeFile(devices[lego_motor.address]["path"] + "/duty_cycle_sp", duty)
-        writeFile(devices[lego_motor.address]["path"] + "/command", "run-direct")
+    def getState(lego_motor):
+        return readFile(devices[lego_motor.address]["path"] + "/state")
     
-    def runTimed(lego_motor, time = 0, speed = 0):
-        writeFile(devices[lego_motor.address]["path"] + "/time_sp", time)
-        writeFile(devices[lego_motor.address]["path"] + "/speed_sp", speed)
-
-    def setStopAction(lego_motor, stopAcion = "brake"):
-        writeFile(devices[lego_motor.address]["path"] + "/stop_action", stopAcion)
-
-    def stop(lego_motor):
-        try: 
-            writeFile(devices[lego_motor.address]["path"] + "/command", "stop")
-            return True
-        except: return False
-    
-    def reset(lego_motor):
-        try:
-            writeFile(devices[lego_motor.address]["path"] + "/command", "reset")
-            return True
-        except: return False
+    def stopMotor(lego_motor):
+        writeFile(devices[lego_motor.address]["path"] + "/command", "stop")

@@ -11,7 +11,7 @@ def readFile(path):
     data = f.read()
     f.close()
     data = data.strip()  
-    return data
+    return str(data)
 
 def writeFile(path, data):
     f = open(path, "w")
