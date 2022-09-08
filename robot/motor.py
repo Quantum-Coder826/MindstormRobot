@@ -8,21 +8,7 @@ from robot.brick import writeFile, readFile, devices
 class motor:
     def __init__(lego_motor, address = "ev3-ports:outA"):
         lego_motor.address = address
-    """
-    TODO:
-        * run-to-abs-pos func
-        * run-to-rel-pos func
-        * run-timed func
-        * run-direct func
-        * stop func
-        * reset func
 
-        * set duty cycle func
-        * set position func
-        * set speed func
-        * get state func
-        * set stop action
-    """
     def setDuty(lego_motor, duty = 0):
         writeFile(devices[lego_motor.address]["path"] + "/duty_cycle_sp", duty)
     
