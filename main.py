@@ -1,6 +1,7 @@
 from robot.brick import *
 from robot.motor import *
 from robot.sensor import *
+# test comment/comit
 print("running")
 
 map = [(0,0),(50,0),(-50,0),(0,50),(0,-50),(50,50),(50,-50),(-50,50),(-50,-50),(0,0),(0,0),(0,0)]
