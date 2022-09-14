@@ -5,17 +5,18 @@ The code is based on ev3dev: https://docs.ev3dev.org/projects/lego-linux-drivers
 """
 from robot.brick import writeFile, readFile, devices
 
+def setMode(port, mode): # sets the mode of a device
+        if devices[port]["mode"] == str(mode):
+            return True #exit if mode already set
+        if mode not in readFile(devices[port]["path"] + "/commands"): # check and raise exception when a invalid mode is given
+            raise Exception("The command: " + str(mode) + " is not avalable for device on: " + str(port) + "\navalable modes are: " + readFile(devices[port]["path"] + "/commands"))
+        writeFile(devices[port]["path"] + "/command", mode) #update the mode
+        devices[port]["mode"] = mode 
+
 class motor:
     def __init__(lego_motor, address = "ev3-ports:outA"):
         lego_motor.address = address
     
-    def setMode(lego_motor, mode):
-        if devices[lego_motor.address]["mode"] = str(mode) # if mode different quit
-            return true
-        # if mode not aviable then error
-        writeFile(devices[lego_motor.address["path"] + "/command", mode)
-        
-
     def setDuty(lego_motor, duty = 0):
         writeFile(devices[lego_motor.address]["path"] + "/duty_cycle_sp", duty)
     
@@ -49,11 +50,3 @@ class motor:
     def runDirect(lego_motor, duty = 0):
         motor.setDuty(lego_motor.address, duty)
         writeFile(devices[lego_motor.address]["path"] + "/command", "rund-direct")
-
-class tankDrive:
-    def __init__(lego_motor, leftMotor, rightMotor):
-        lego_motor.leftMotor = leftMotor
-        lego_motor.rightMotor = rightMotor
-    
-    def drive(dutyRight, dutyLeft):
-        
