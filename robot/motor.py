@@ -8,6 +8,13 @@ from robot.brick import writeFile, readFile, devices
 class motor:
     def __init__(lego_motor, address = "ev3-ports:outA"):
         lego_motor.address = address
+    
+    def setMode(lego_motor, mode):
+        if devices[lego_motor.address]["mode"] = str(mode) # if mode different quit
+            return true
+        # if mode not aviable then error
+        writeFile(devices[lego_motor.address["path"] + "/command", mode)
+        
 
     def setDuty(lego_motor, duty = 0):
         writeFile(devices[lego_motor.address]["path"] + "/duty_cycle_sp", duty)
