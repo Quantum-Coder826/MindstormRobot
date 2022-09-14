@@ -24,5 +24,27 @@ class motor:
         writeFile(atribute(lego_motor.address, "speed_sp"), speed)
         sendCommand(lego_motor.address, "run-forever")
     
-    def absolutePos(lego_motor, speed = 0, position = 0):
-        writeFile()
+    def runAbsolutePos(lego_motor, speed = 0, position = 0):
+        writeFile(atribute(lego_motor.address, "speed_sp"), speed)
+        writeFile(atribute(lego_motor.address, "position_sp"), position)
+        sendCommand(lego_motor.address, "run-to-abs-pos")
+    
+    def runRelativePos(lego_motor, speed = 0, position = 0):
+        writeFile(atribute(lego_motor.address, "speed_sp"), speed)
+        writeFile(atribute(lego_motor.address, "position_sp"), position)
+        sendCommand(lego_motor.address, "run-to-rel-pos")
+
+    def runTimed(lego_motor, speed = 0, time = 0):
+        writeFile(atribute(lego_motor.address, "speed_sp"), speed)
+        writeFile(atribute(lego_motor.address, "time_sp"), time)
+        sendCommand(lego_motor.address, "run-timed")
+    
+    def runDuty(lego_motor, duty = 0):
+        writeFile(atribute(lego_motor.address, "duty_sp"), duty)
+        sendCommand(lego_motor.address, "run-direct")
+    
+    def stop(lego_motor):
+        sendCommand(lego_motor.address, "stop")
+    
+    def reset(lego_motor):
+        sendCommand(lego_motor.address, "reset")
