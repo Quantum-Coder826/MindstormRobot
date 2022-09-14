@@ -42,3 +42,11 @@ class motor:
     def runDirect(lego_motor, duty = 0):
         motor.setDuty(lego_motor.address, duty)
         writeFile(devices[lego_motor.address]["path"] + "/command", "rund-direct")
+
+class tankDrive:
+    def __init__(lego_motor, leftMotor, rightMotor):
+        lego_motor.leftMotor = leftMotor
+        lego_motor.rightMotor = rightMotor
+    
+    def drive(dutyRight, dutyLeft):
+        

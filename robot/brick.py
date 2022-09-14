@@ -25,7 +25,8 @@ class mindstroms:
                 "path": str(motorpath + "/" +str(dir)),
                 "driver_name": str(readFile(motorpath + "/" + str(dir) + "/driver_name")),
                 "count_per_rot": str(readFile(motorpath + "/" + str(dir) + "/count_per_rot")),
-                "max_speed": str(readFile(motorpath + "/" + str(dir) + "/max_speed"))
+                "max_speed": str(readFile(motorpath + "/" + str(dir) + "/max_speed")),
+                "mode": None
             }
         
         for dir in listdir(sensorpath): #inf all avalable sensor and save the data
@@ -33,7 +34,8 @@ class mindstroms:
                 "path": str(sensorpath + "/" + str(dir)),
                 "driver_name": str(sensorpath + "/" + str(dir) + "/driver_name"),
                 "decimals": str(sensorpath + "/" + str(dir) + "/decimals"),
-                "num_values": str(sensorpath + "/" + str(dir) + "/num_values")
+                "num_values": str(sensorpath + "/" + str(dir) + "/num_values"),
+                "mode": None
             }
         mindstroms.resetAll()
     
