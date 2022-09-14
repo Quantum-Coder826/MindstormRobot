@@ -20,6 +20,7 @@ class motor:
     def __init__(lego_motor, address = "ev3-ports:outA"):
         lego_motor.address = address
     
+    # all avalable control commands
     def runForever(lego_motor, speed = 0):
         writeFile(atribute(lego_motor.address, "speed_sp"), speed)
         sendCommand(lego_motor.address, "run-forever")
@@ -48,3 +49,6 @@ class motor:
     
     def reset(lego_motor):
         sendCommand(lego_motor.address, "reset")
+
+    # data commands
+
