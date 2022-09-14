@@ -51,7 +51,6 @@ class mindstroms:
 
     # todo: figure out how the hell to read the buttons (https://docs.ev3dev.org/projects/lego-linux-drivers/en/ev3dev-stretch/ev3.html#buttons)
 
-
 class ports:
     # all the ports
     outA = "ev3-ports:outA"

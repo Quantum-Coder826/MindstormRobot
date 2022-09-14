@@ -5,15 +5,24 @@ The code is based on ev3dev: https://docs.ev3dev.org/projects/lego-linux-drivers
 """
 from robot.brick import writeFile, readFile, devices
 
-def setMode(port, mode): # sets the mode of a device
-        if devices[port]["mode"] == str(mode):
+def sendCommand(port, command): # sets the mode of a device
+        if devices[port]["mode"] == str(command):
             return True #exit if mode already set
-        if mode not in readFile(devices[port]["path"] + "/commands"): # check and raise exception when a invalid mode is given
-            raise Exception("The command: " + str(mode) + " is not avalable for device on: " + str(port) + "\navalable modes are: " + readFile(devices[port]["path"] + "/commands"))
-        writeFile(devices[port]["path"] + "/command", mode) #update the mode
-        devices[port]["mode"] = mode 
+        if command not in readFile(devices[port]["path"] + "/commands"): # check and raise exception when a invalid mode is given
+            raise Exception("The command: " + str(command) + " is not avalable for device on: " + str(port) + "\navalable modes are: " + readFile(devices[port]["path"] + "/commands"))
+        writeFile(devices[port]["path"] + "/command", command) #update the mode
+        devices[port]["mode"] = command
+
+def atribute(port, attribte): # returns the concatanated path to selected file of a device
+    return str(devices[port]["path"] + str(attribte))
 
 class motor:
     def __init__(lego_motor, address = "ev3-ports:outA"):
         lego_motor.address = address
     
+    def runForever(lego_motor, speed = 0):
+        writeFile(atribute(lego_motor.address, "speed_sp"), speed)
+        sendCommand(lego_motor.address, "run-forever")
+    
+    def absolutePos(lego_motor, speed = 0, position = 0):
+        writeFile()
