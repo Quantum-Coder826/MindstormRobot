@@ -51,5 +51,20 @@ class motor:
     def reset(lego_motor):
         sendCommand(lego_motor.address, "reset")
         devices[lego_motor.address]["mode"] = None
-    # data commands
 
+    # data commands
+    def getRotationCount(lego_motor):
+        return int(readFile(atribute(lego_motor.address, "count_per_rot")))
+    
+    def getMeterCount(lego_motor):
+        return int(readFile(atribute(lego_motor.address, "count_per_m")))
+    
+    def getFullTravel(lego_motor):
+        return int(readFile(atribute(lego_motor.address, "full_travel_count")))
+    
+    def getPosition(lego_motor):
+        return int(readFile(atribute(lego_motor.address, "position")))
+    
+    def getSpeed(lego_motor):
+        return int(readFile(atribute(lego_motor.address, "speed")))
+    
