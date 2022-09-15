@@ -43,6 +43,7 @@ class mindstroms:
         for key in devices:
             if "out" in key:
                 writeFile(devices[key]["path"] + "/command", "reset")
+                devices[key]["mode"] = None
             else:
                 continue
 

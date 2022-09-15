@@ -46,9 +46,10 @@ class motor:
     
     def stop(lego_motor):
         sendCommand(lego_motor.address, "stop")
-    
+        devices[lego_motor.address]["mode"] = None
+
     def reset(lego_motor):
         sendCommand(lego_motor.address, "reset")
-
+        devices[lego_motor.address]["mode"] = None
     # data commands
 
