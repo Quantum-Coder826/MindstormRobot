@@ -19,6 +19,7 @@ def atribute(port, attribte): # returns the concatanated path to selected file o
 class motor:
     def __init__(lego_motor, address = "ev3-ports:outA"):
         lego_motor.address = address
+        sendCommand(lego_motor.address, "reset")
     
     # all avalable control commands
     def runForever(lego_motor, speed = 0):
