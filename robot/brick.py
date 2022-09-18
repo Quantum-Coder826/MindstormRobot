@@ -31,7 +31,7 @@ class mindstorms:
                 "path": "/sysclass/lego-sensor/" + str(dir),
                 "driver_name": readFile("/sys/class/lego-sensor/" + str(dir) + "/driver_name")
             }
-        mindstroms.resetAll()
+        mindstorms.resetAll()
         print(devices)
     
     def resetAll(): # resets all avalable motors, sensors don't need resetting
