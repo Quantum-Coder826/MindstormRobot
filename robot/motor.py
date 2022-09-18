@@ -10,7 +10,6 @@ class motor:
         lego_motor.address = address
         devices[lego_motor.address] = {
             "count_per_rot": int(readFile(devices[lego_motor.address]["path"] + "/count_per_rot")),
-            "count_per_m": int(readFile(devices[lego_motor.address]["path"] +"/count_per_m")),
             "commands": str(readFile(devices[lego_motor.address]["path"] + "/commands")),
             "max_speed": int(readFile(devices[lego_motor.address]["path"]) + "/max_speed")
         }
