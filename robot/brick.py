@@ -20,23 +20,17 @@ def writeFile(path, data):
 
 class mindstroms:
     def __init__(lego_brick):
-        for dir in listdir(motorpath): #find all avalable motors and save the data
-            devices[readFile(motorpath + "/" + str(dir) + "/address")] = {
-                "path": str(motorpath + "/" +str(dir)),
-                "driver_name": str(readFile(motorpath + "/" + str(dir) + "/driver_name")),
-                "count_per_rot": str(readFile(motorpath + "/" + str(dir) + "/count_per_rot")),
-                "max_speed": str(readFile(motorpath + "/" + str(dir) + "/max_speed")),
-                "mode": None
+        for dir in listdir("/sys/class/tacho-motor"):
+            devices[readFile("/sys/class/tacho-motor/" + str(dir) + "/address")] = {
+                "path": "/sys/class/tacho-motor" + str(dir),
+                "driver_name": readFile("/sys/class/tacho-motor/" + str(dir) + "/driver_name")
             }
         
-        for dir in listdir(sensorpath): #inf all avalable sensor and save the data
-            devices[readFile(sensorpath + "/" + str(dir) + "/address")] = {
-                "path": str(sensorpath + "/" + str(dir)),
-                "driver_name": str(sensorpath + "/" + str(dir) + "/driver_name"),
-                "decimals": str(sensorpath + "/" + str(dir) + "/decimals"),
-                "num_values": str(sensorpath + "/" + str(dir) + "/num_values"),
-                "mode": None
-            }
+        for dir in listdir("/sys/class/lego-sensor"):
+            devices[readFile("/sys/class/lego-sensor/" + str(dir) + "/address")] = {
+                "path": "/sysclass/lego-sensor" + str(dir),
+                "driver_name": readFile("/sys/class/lego-sensor/" + str(dir) + "/driver_name")
+            }  
         mindstroms.resetAll()
     
     def resetAll(): # resets all avalable motors, sensors don't need resetting
