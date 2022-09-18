@@ -8,11 +8,9 @@ from robot.brick import writeFile, readFile, devices
 class motor:
     def __init__(lego_motor, address):
         lego_motor.address = address
-        devices[lego_motor.address] = {
-            "count_per_rot": int(readFile(devices[lego_motor.address]["path"] + "/count_per_rot")),
-            "commands": str(readFile(devices[lego_motor.address]["path"] + "/commands")),
-            "max_speed": int(readFile(devices[lego_motor.address]["path"] + "/max_speed"))
-        }
+        devices[lego_motor.address]["count_per_rot"] = int(readFile(devices[lego_motor.address]["path"] + "/count_per_rot"))
+        devices[lego_motor.address]["commands"] = str(readFile(devices[lego_motor.address]["path"] + "/commands"))
+        devices[lego_motor.address]["max_speed"] = int(readFile(devices[lego_motor.address]["path"] + "/max_speed"))
     
     def sendCommand(lego_motor, command):
         if command not in devices[lego_motor.address]["commands"]:
