@@ -22,16 +22,17 @@ class mindstroms:
     def __init__(lego_brick):
         for dir in listdir("/sys/class/tacho-motor"):
             devices[readFile("/sys/class/tacho-motor/" + str(dir) + "/address")] = {
-                "path": "/sys/class/tacho-motor" + str(dir),
+                "path": "/sys/class/tacho-motor/" + str(dir),
                 "driver_name": readFile("/sys/class/tacho-motor/" + str(dir) + "/driver_name")
             }
         
         for dir in listdir("/sys/class/lego-sensor"):
             devices[readFile("/sys/class/lego-sensor/" + str(dir) + "/address")] = {
-                "path": "/sysclass/lego-sensor" + str(dir),
+                "path": "/sysclass/lego-sensor/" + str(dir),
                 "driver_name": readFile("/sys/class/lego-sensor/" + str(dir) + "/driver_name")
-            }  
+            }
         mindstroms.resetAll()
+        print(devices)
     
     def resetAll(): # resets all avalable motors, sensors don't need resetting
         for key in devices:
