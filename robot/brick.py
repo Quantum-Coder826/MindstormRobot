@@ -41,7 +41,7 @@ class mindstorms:
                 devices[key]["mode"] = None
             else:
                 continue
-        for key in led:
+        for key in ledpath:
             if key == 0 or key == 2:
                 writeFile(led[key] + "/brightness", 255)
             else:
