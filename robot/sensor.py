@@ -32,3 +32,10 @@ class sensor:
             return value
         value = value / 10
         return value
+
+    # sensor specific functions
+    def getButton(lego_sensor):
+        if int(readFile([lego_sensor.address]["path"] + "/value0")) == 1:
+            return True
+        else:
+            return False
