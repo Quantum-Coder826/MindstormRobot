@@ -43,9 +43,9 @@ class mindstorms:
                 continue
         for key in ledpath:
             if key == 0 or key == 2:
-                writeFile(led[key] + "/brightness", 255)
+                writeFile(ledpath[key] + "/brightness", 255)
             else:
-                writeFile(led[key] + "/brightness", 0)
+                writeFile(ledpath[key] + "/brightness", 0)
                 
 
     def setLed(lego_brick, target = 0, value = 255): # changes the brightness of a led
