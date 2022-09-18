@@ -15,7 +15,7 @@ class motor:
     def sendCommand(lego_motor, command):
         if command not in devices[lego_motor.address]["commands"]:
             raise Exception("The command: " + str(command) + " is not avalable for device: " + str(lego_motor.address) + "acepted commads are: " + str(devices[lego_motor.address]["commands"]))
-        writeFile(devices[lego_motor.address]["path"] + "/command" + command)
+        writeFile(devices[lego_motor.address]["path"] + "/command", command)
     
     def getTravelCount(lego_motor):
         return int(readFile(devices[lego_motor.address]["path"] + "/full_travel_count"))
@@ -26,8 +26,8 @@ class motor:
     def getPosition(lego_motor):
         return int(readFile(devices[lego_motor.address]["path"] + "/position"))
     
-    def setPosition(lego_motor, angel = 0):
-        writeFile(devices[lego_motor.address]["path"] + "/position_sp", angel)
+    def setPosition(lego_motor, angle = 0):
+        writeFile(devices[lego_motor.address]["path"] + "/position_sp", angle)
     
     def getSpeed(lego_motor):
         return int(readFile(devices[lego_motor.address]["path"] + "/speed"))
