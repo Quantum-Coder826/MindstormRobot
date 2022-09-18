@@ -8,7 +8,7 @@ class sensor:
         devices[lego_sensor.address]["modes"] = readFile(devices[lego_sensor.address]["path"] + "/modes")
     
     def getRaw(lego_sensor):
-        file = open(devices[lego_sensor.address]["path"] + "bin_data", "rb")
+        file = open(devices[lego_sensor.address]["path"] + "/bin_data", "rb")
         binData = file.read()
         del file
         binDataFormat = readFile(devices[lego_sensor.address]["path"] + "/bin_data_format")
