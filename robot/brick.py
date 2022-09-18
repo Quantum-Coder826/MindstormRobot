@@ -28,7 +28,7 @@ class mindstorms:
         
         for dir in listdir("/sys/class/lego-sensor"):
             devices[readFile("/sys/class/lego-sensor/" + str(dir) + "/address")] = {
-                "path": "/sysclass/lego-sensor/" + str(dir),
+                "path": "/sys/class/lego-sensor/" + str(dir),
                 "driver_name": readFile("/sys/class/lego-sensor/" + str(dir) + "/driver_name")
             }
         mindstorms.resetAll()
