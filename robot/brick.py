@@ -34,13 +34,19 @@ class mindstorms:
         mindstorms.resetAll()
         print(devices)
     
-    def resetAll(): # resets all avalable motors, sensors don't need resetting
+    def resetAll(): #sensors don't need resetting
         for key in devices:
             if "out" in key:
                 writeFile(devices[key]["path"] + "/command", "reset")
                 devices[key]["mode"] = None
             else:
                 continue
+        for key in led:
+            if key == 0 or key == 2:
+                writeFile(led[key] + "/brightness", 255)
+            else:
+                writeFile(led[key] + "/brightness", 0)
+                
 
     def setLed(lego_brick, target = 0, value = 255): # changes the brightness of a led
         writeFile(ledpath[target] + "/brightness", value)
