@@ -34,8 +34,8 @@ class sensor:
         return value
 
     # sensor specific functions
-    def getButton(lego_sensor):
-        if int(readFile([lego_sensor.address]["path"] + "/value0")) == 1:
+    def isPressed(lego_sensor):
+        if int(readFile(devices[lego_sensor.address]["path"] + "/value0")) == 1:
             return True
         else:
             return False
