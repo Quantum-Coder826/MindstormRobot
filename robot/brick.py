@@ -18,7 +18,7 @@ def writeFile(path, data):
     f.write(str(data))
     f.close()
 
-class mindstroms:
+class mindstorms:
     def __init__(lego_brick):
         for dir in listdir("/sys/class/tacho-motor"):
             devices[readFile("/sys/class/tacho-motor/" + str(dir) + "/address")] = {
