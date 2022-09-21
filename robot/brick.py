@@ -1,4 +1,4 @@
-from os import listdir
+#!/usr/bin/env python3
 
 motorpath = "/sys/class/tacho-motor"
 sensorpath = "/sys/class/lego-sensor"
