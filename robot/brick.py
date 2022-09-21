@@ -46,8 +46,6 @@ class mindstorms:
         writeFile(ledpath[2] + "/brightness", 255)
         writeFile(ledpath[3] + "/brightness", 0)
 
-
-
     def setLed(lego_brick, target = 0, value = 255): # changes the brightness of a led
         writeFile(ledpath[target] + "/brightness", value)
 

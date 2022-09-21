@@ -1,6 +1,6 @@
-from robot.brick import *
-from robot.sensor import *
+from robot.brick import readFile
+gpio = "/dev/input/by-path/platform-gpio-keys.0-event"
 
-map = [(0,0),(50,0),(-50,0),(0,50),(0,-50),(50,50),(50,-50),(-50,50),(-50,-50),(0,0),(0,0),(0,0)]
-
-brick = mindstorms()
+while True:
+    print(readFile(gpio))
+    
