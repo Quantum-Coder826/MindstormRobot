@@ -3,7 +3,6 @@
 motorpath = "/sys/class/tacho-motor"
 sensorpath = "/sys/class/lego-sensor"
 ledpath = ["/sys/class/leds/led0:green:brick-status", "/sys/class/leds/led0:red:brick-status", "/sys/class/leds/led1:green:brick-status", "/sys/class/leds/led1:red:brick-status"]
-devices = {}
 
 # general functions
 def readFile(path):
