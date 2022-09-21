@@ -20,31 +20,11 @@ def writeFile(path, data):
 
 class mindstorms:
     def __init__(lego_brick):
-        for dir in listdir("/sys/class/tacho-motor"):
-            devices[readFile("/sys/class/tacho-motor/" + str(dir) + "/address")] = {
-                "path": "/sys/class/tacho-motor/" + str(dir),
-                "driver_name": readFile("/sys/class/tacho-motor/" + str(dir) + "/driver_name")
-            }
-        
-        for dir in listdir("/sys/class/lego-sensor"):
-            devices[readFile("/sys/class/lego-sensor/" + str(dir) + "/address")] = {
-                "path": "/sys/class/lego-sensor/" + str(dir),
-                "driver_name": readFile("/sys/class/lego-sensor/" + str(dir) + "/driver_name")
-            }
-        mindstorms.resetAll()
-        print(devices)
-    
-    def resetAll(): #sensors don't need resetting
-        for key in devices:
-            if "out" in key:
-                writeFile(devices[key]["path"] + "/command", "reset")
-                devices[key]["mode"] = None
+        for i in range(0,3):
+            if i == 0 or i == 2:
+                writeFile(ledpath[i] + "/brightness", 255)
             else:
-                continue
-        writeFile(ledpath[0] + "/brightness", 255)
-        writeFile(ledpath[1] + "/brightness", 0)
-        writeFile(ledpath[2] + "/brightness", 255)
-        writeFile(ledpath[3] + "/brightness", 0)
+                writeFile(ledpath[i] + "/brightness", 0)
 
     def setLed(lego_brick, target = 0, value = 255): # changes the brightness of a led
         writeFile(ledpath[target] + "/brightness", value)
