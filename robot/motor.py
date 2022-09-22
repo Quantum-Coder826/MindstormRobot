@@ -30,7 +30,7 @@ class motor:
     def setDuty(lego_motor, duty = 0):
         writeFile(lego_motor.path + "/duty_cycle_sp", int(duty))
     
-    def getPosition(lego_motor):
+    def position(lego_motor):
         return int(readFile(lego_motor.path + "/position"))
 
     def maxSpeed(lego_motor):
@@ -42,5 +42,19 @@ class motor:
     def speed(lego_motor):
         return int(readFile(lego_motor.path + "/speed"))
         
-
+    def setSpeed(lego_motor, speed = 0):
+        writeFile(lego_motor.path + "/speed_sp", speed)
+    
+    # set ramps?
+    def state(lego_motor):
+        return readFile(lego_motor.path + "/state")
+    
+    def setStop(lego_motor, action):
+        if action not in readFile(lego_motor.path + "/stop_actions"):
+            raise Exception("stop action: " + str(action) + " is not available for: " + str(lego_motor.port))
+        else:
+            writeFile(lego_motor.path + "/stop_action", action)
+    
+    def setTime(lego_motor, time = 0):
+        writeFile(lego_motor.path + "/time_sp", time)
 
