@@ -31,4 +31,7 @@ class sensor:
         if value > int(readFile(lego_sensor.path + "/num_values")):
             raise Exception("the value: " + str(value) + " for device: " + str(lego_sensor.port) + " is not available")
         else:
+            if readFile(lego_sensor.path + "/decimals"):
+                raw = int(readFile(lego_sensor.path + "/value" + str(value)))
+                return float (raw / 10)
             return int(readFile(lego_sensor.path + "/value" + str(value)))
