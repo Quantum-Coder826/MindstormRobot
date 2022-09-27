@@ -1,6 +1,5 @@
-from robot.brick import readFile
-gpio = "/dev/input/by-path/platform-gpio-keys.0-event"
+from robot.brick import *
+from robot.motor import *
+from robot.sensor import *
 
-while True:
-    print(readFile(gpio))
-    
+brick = mindstorms()

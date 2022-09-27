@@ -35,3 +35,9 @@ class sensor:
                 raw = int(readFile(lego_sensor.path + "/value" + str(value)))
                 return float (raw / 10)
             return int(readFile(lego_sensor.path + "/value" + str(value)))
+    
+    def isPressed(lego_sensor):
+        if readFile(lego_sensor.path + "/value0") == "1":
+            return True
+        else:
+            return False
