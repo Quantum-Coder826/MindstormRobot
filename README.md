@@ -38,13 +38,14 @@ The motor class contain all the methods to control lego tacho motors, the class 
 
 ### Method `sendCommand(lego_motor, command)`
 sends a command to the motor possible commands are:
-<div style="width:290px">command</div> | description
---- | --- 
-`"run-forerver"` | Causes the motor to run until another command is sent.
-`"run-to-abs-pos"` | Runs the motor to an absolute position specified by`position_sp` and then stops the motor using the command specified in `stop_action`
-`"run-to-rel-pos"` | Runs the motor to a position relative to the current position value. The new position will be current `position` + `position_sp`. When the new position is reached, the motor will stop using the command specified by `stop_action`.
-`"run-timed"` | Run the motor for the amount of time specified in `time_sp` and then stops the motor using the command specified by `stop_action`.
-`"run-direct"` | Runs the motor using the duty cycle specified by `duty_cycle_sp`. Unlike other run commands, changing `duty_cycle_sp` while running will take effect immediately.
+| <div style="width:300px">command</div> | description |
+| --- | --- |
+| `"run-forerver"` | Causes the motor to run until another command is sent. |
+| `"run-to-abs-pos"` | Runs the motor to an absolute position specified by`position_sp` and then stops the motor using the command specified in `stop_action` |
+| `"run-to-rel-pos"` | Runs the motor to a position relative to the current position value. The new position will be current `position` + `position_sp`. When the new position is reached, the motor will stop using the command specified by `stop_action`. |
+| `"run-timed"` | Run the motor for the amount of time specified in `time_sp` and then stops the motor using the command specified by `stop_action`. |
+| `"run-direct"` | Runs the motor using the duty cycle specified by `duty_cycle_sp`. Unlike other run commands, changing `duty_cycle_sp` while running will take effect immediately. |
+
 ### Usefule code snippets:
 Tankdrive keymap for use with controller:
 
