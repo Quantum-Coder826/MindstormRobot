@@ -38,7 +38,7 @@ The motor class contain all the methods to control lego tacho motors, the class 
 
 ### Method `sendCommand(lego_motor, command)`
 sends a command to the motor possible commands are:
-| <div style="width:300px">command</div> | description |
+| command| description |
 | --- | --- |
 | `"run-forerver"` | Causes the motor to run until another command is sent. |
 | `"run-to-abs-pos"` | Runs the motor to an absolute position specified by`position_sp` and then stops the motor using the command specified in `stop_action` |
