@@ -81,6 +81,10 @@ returns the current state of the motor as an integer, see https://docs.ev3dev.or
 
 ### Method `setStop(lego_motor, action)`
 writes the value in action to `stop_action` the value should be an string matching the information in: https://docs.ev3dev.org/projects/lego-linux-drivers/en/ev3dev-stretch/motors.html#sysfs at Attribute stop_actions
+
+### Method `setTime(lego_motor, time = 0)`
+writes the value in time to `time_sp` the value should be an integer zero or higher.
+
 ### Usefule code snippets:
 Tankdrive keymap for use with controller:
 
