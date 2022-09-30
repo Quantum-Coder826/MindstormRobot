@@ -85,6 +85,27 @@ writes the value in action to `stop_action` the value should be an string matchi
 ### Method `setTime(lego_motor, time = 0)`
 writes the value in time to `time_sp` the value should be an integer zero or higher.
 
+# sensor.py
+sensor.py contains all code to control sensors and read values.
+
+### Method `getBin(lego_sensor)`
+this method returns two values a the raw binary data and a string with contains the format of the binary data, more inforamtion can be found in https://docs.ev3dev.org/projects/lego-linux-drivers/en/ev3dev-stretch/sensors.html#sysfs under Attribute bin_data_format
+
+### Method `driver(lego_sensor)`
+returns the driver name of the sensor as a string, the list of driver names can be found here: https://docs.ev3dev.org/projects/lego-linux-drivers/en/ev3dev-stretch/sensors.html#supported-sensors
+
+### Method `setMode(lego_sensor, mode)`
+this metod sets the mode of the sensor the list of [supported sensors](https://docs.ev3dev.org/projects/lego-linux-drivers/en/ev3dev-stretch/sensors.html#supported-sensors) you can find the modes of a sensor.
+
+### method `getUnits(lego_sensor)`
+returns the unit the sensor currently is using as a string.
+
+### method `getValue(lego_sensor, value = 0)`
+returns a specific value as a integer or a float (depending on sensor and the mode of the sensor) the values that can be read form a sensor are mode specific, see the list of [supported sensors](https://docs.ev3dev.org/projects/lego-linux-drivers/en/ev3dev-stretch/sensors.html#supported-sensors) for all the details.
+
+### method `isPressed(lego_sensor)`
+this method is specific to the Touch Sensors bough EV3 and NXT platforms, this method returns `True` when a button is pressed else it returns a `False`
+
 ### Usefule code snippets:
 Tankdrive keymap for use with controller:
 
