@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from os import listdir
 
 motorpath = "/sys/class/tacho-motor"
 sensorpath = "/sys/class/lego-sensor"
@@ -19,11 +20,13 @@ def writeFile(path, data):
 
 class mindstorms:
     def __init__(lego_brick):
-        for i in range(0,3):
+        for i in range(0,3): # reset all leds
             if i == 0 or i == 2:
                 writeFile(ledpath[i] + "/brightness", 255)
             else:
                 writeFile(ledpath[i] + "/brightness", 0)
+        for dir in listdir("/sys/class/tacho-motor"): # reset all motors
+            writeFile("/sys/class/tacho-motor/" + str(dir) + "/command", "reset")
 
     def setLed(lego_brick, target = 0, value = 255): # changes the brightness of a led
         writeFile(ledpath[target] + "/brightness", value)
