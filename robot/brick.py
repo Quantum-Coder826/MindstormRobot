@@ -21,16 +21,15 @@ def writeFile(path, data):
 
 def exit_handler():
     print("exiting")
-    for i in range(0,3): # reset all leds
-        if i == 0 or i == 2:
-            writeFile(ledpath[i] + "/brightness", 255)
-        else:
-            writeFile(ledpath[i] + "/brightness", 0)
-    for dir in listdir("/sys/class/tacho-motor"): # reset all motors
-        writeFile("/sys/class/tacho-motor/" + str(dir) + "/command", "reset")
+    mindstorms.reset()
 
 class mindstorms:
     def __init__(lego_brick):
+        mindstorms.reset()
+        print("running")
+
+    @staticmethod
+    def reset(lego_brick):
         for i in range(0,3): # reset all leds
             if i == 0 or i == 2:
                 writeFile(ledpath[i] + "/brightness", 255)
@@ -38,7 +37,6 @@ class mindstorms:
                 writeFile(ledpath[i] + "/brightness", 0)
         for dir in listdir("/sys/class/tacho-motor"): # reset all motors
             writeFile("/sys/class/tacho-motor/" + str(dir) + "/command", "reset")
-        print("running")
 
     def setLed(lego_brick, target = 0, value = 255): # changes the brightness of a led
         writeFile(ledpath[target] + "/brightness", value)
