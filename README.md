@@ -112,3 +112,4 @@ Tankdrive keymap for use with controller:
 ```python
 [(0,0),(50,0),(-50,0),(0,50),(0,-50),(50,50),(50,-50),(-50,50),(-50,-50),(0,0),(0,0),(0,0)]
 ```
+linux dev/fb0 size is 92k
