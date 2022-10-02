@@ -29,7 +29,7 @@ class mindstorms:
         print("running")
 
     @staticmethod
-    def reset(lego_brick):
+    def reset():
         for i in range(0,3): # reset all leds
             if i == 0 or i == 2:
                 writeFile(ledpath[i] + "/brightness", 255)
