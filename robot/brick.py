@@ -21,32 +21,24 @@ def writeFile(path, data):
 
 def exit_handler():
     print("exiting")
-    mindstorms.reset()
+    writeFile(ledpath[0] + "/brightness", "255")
+    writeFile(ledpath[1] + "/brightness", "0")
+    writeFile(ledpath[2] + "/brightness", "255")
+    writeFile(ledpath[3] + "/brightness", "0")
+
+    for dir in listdir("/sys/class/tacho-motor"): # reset all motors
+        writeFile("/sys/class/tacho-motor/" + str(dir) + "/command", "reset")
 
 class mindstorms:
     def __init__(lego_brick):
-        mindstorms.reset()
+        writeFile(ledpath[0] + "/brightness", "255")
+        writeFile(ledpath[1] + "/brightness", "0")
+        writeFile(ledpath[2] + "/brightness", "255")
+        writeFile(ledpath[3] + "/brightness", "0")
         print("running")
-
-    @staticmethod
-    def reset():
-        for i in range(0,3): # reset all leds
-            if i == 0 or i == 2:
-                writeFile(ledpath[i] + "/brightness", 255)
-            else:
-                writeFile(ledpath[i] + "/brightness", 0)
-        for dir in listdir("/sys/class/tacho-motor"): # reset all motors
-            writeFile("/sys/class/tacho-motor/" + str(dir) + "/command", "reset")
-
+    
     def setLed(lego_brick, target = 0, value = 255): # changes the brightness of a led
         writeFile(ledpath[target] + "/brightness", value)
-
-    def resetLed(lego_brick):
-        for i in range(0,3): # reset all leds
-            if i == 0 or i == 2:
-                writeFile(ledpath[i] + "/brightness", 255)
-            else:
-                writeFile(ledpath[i] + "/brightness", 0)
 
     # todo: figure out how the hell to read the buttons (https://docs.ev3dev.org/projects/lego-linux-drivers/en/ev3dev-stretch/ev3.html#buttons)
 class ports:
