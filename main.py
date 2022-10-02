@@ -16,7 +16,5 @@ IR.setMode("IR-REMOTE")
 
 while True:
     key = IR.getValue()
-    print(type(key))
-    print(key)
     leftMotor.setDuty(keyMap[key][0])
     rightMotor.setDuty(keyMap[key][1])
