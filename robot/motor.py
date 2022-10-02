@@ -13,7 +13,7 @@ class motor:
     def sendCommand(lego_motor, command):
         if command not in readFile(lego_motor.path + "/commands"):
             raise Exception("The command: " + command + " is not available for: " + str(lego_motor.path))
-        writeFile(lego_motor.path + "command", str(command))
+        writeFile(lego_motor.path + "/command", str(command))
     
     def getCountPerRot(lego_motor):
         return int(readFile(lego_motor.path + "/count_per_rot"))
