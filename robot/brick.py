@@ -63,3 +63,4 @@ class led:
     rightGreen = 2
     rightRed = 3
 
+atexit.register(exit_handler)
