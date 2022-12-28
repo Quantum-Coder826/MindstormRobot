@@ -41,8 +41,19 @@ class mindstorms:
         writeFile(ledpath[target] + "/brightness", value)
 
     # todo: figure out how the hell to read the buttons (https://docs.ev3dev.org/projects/lego-linux-drivers/en/ev3dev-stretch/ev3.html#buttons)
+
+    def clearLeds(lego_brick): # turns off all leds
+        for i in range(0,3):
+            writeFile(ledpath[i] + "/brightness", "0")
+
+    def resetLeds(lego_brick): # set the leds on the brick to default state
+        writeFile(ledpath[0] + "/brightness", "255")
+        writeFile(ledpath[1] + "/brightness", "0")
+        writeFile(ledpath[2] + "/brightness", "255")
+        writeFile(ledpath[3] + "/brightness", "0")
+
 class ports:
-    # all the ports
+    # This class contains all default ev3 prot names
     outA = "ev3-ports:outA"
     outB = "ev3-ports:outB"
     outC = "ev3-ports:outC"
@@ -54,10 +65,10 @@ class ports:
     in4 = "ev3-ports:in4"
 
 class led:
-    # led codes
+    # This class contains the names for the leds on the lego mindstorms brick
     leftGreen = 0
     leftRed = 1
     rightGreen = 2
     rightRed = 3
 
-atexit.register(exit_handler)
+atexit.register(exit_handler) # register the exit handler
