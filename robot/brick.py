@@ -51,7 +51,7 @@ class mindstorms:
         writeFile(ledpath[2] + "/brightness", "255")
         writeFile(ledpath[3] + "/brightness", "0")
         
-    # get the key pressed on the brick
+    # get the key pressed on the brick this function will wait until a button is pressed or released
     def getKey(lego_brick):
         buttons = open("/dev/input/event1", "rb")
 
@@ -64,7 +64,32 @@ class mindstorms:
         
         buttons.close()
         return key, keyDown
-        
+    
+    # The following functions are for the reading of information about the battery.
+    def batteryCurrent(lego_brick):
+        return int(readFile("/sys/class/power_supply/lego-ev3-battery/current_now"))
+    
+    # returns True when the battery is a Li-ion else reteruns a false
+    def isLiIon(lego_brick):
+        if readFile("/sys/class/power_supply/lego-ev3-battery/technology") == "Unknow":
+            return False
+        elif readFile("/sys/class/power_supply/lego-ev3-battery/technology") == "Li-ion":
+            return True
+        else:
+            return False
+    
+    # get the maximum voltage of the battery
+    def maxBatteryVoltage(lego_brick): 
+        volts = int(readFile("/sys/class/power_supply/lego-ev3-battery/voltage_max_design"))
+        volts = float(volts / 1000000)
+        return volts
+
+    def minBatteryVoltage(lego_brick):
+        volts = int(readFile("/sys/class/power_supply/lego-ev3-battery/voltage_max_design"))
+        volts = float(volts / 1000000)
+        return volts
+
+            
 class ports:
     # This class contains all default ev3 prot names
     outA = "ev3-ports:outA"
