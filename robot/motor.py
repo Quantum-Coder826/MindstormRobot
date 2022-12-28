@@ -6,7 +6,11 @@ from os import listdir
 class motor:
     def __init__(lego_motor, port):
         lego_motor.port = port
-        for dir in listdir("/sys/class/tacho-motor"):
+
+        if len(listdir("/sys/class/tacho-motor")) == 0: # check if a device can be found
+            raise Exception("No device can be found on: " + str(lego_motor.port))
+
+        for dir in listdir("/sys/class/tacho-motor"): # save the path to the device to "map it" 
             if port == readFile("/sys/class/tacho-motor/" + str(dir) + "/address"):
                 lego_motor.path = "/sys/class/tacho-motor/" + str(dir)
 

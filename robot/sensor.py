@@ -4,8 +4,12 @@ from os import listdir
 class sensor:
     def __init__(lego_sensor, port):
         lego_sensor.port = port
-        for dir in listdir("/sys/class/lego-sensor"):
-            if port == readFile("/sys/class/lego-sensor/" + str(dir) + "/address"):
+
+        if len(listdir("/sys/class/lego-sensor")) == 0: # check if a device can be found
+            raise Exception("No device can be found on: " + str(lego_sensor.port))
+
+        for dir in listdir("/sys/class/lego-sensor"): # save the path to the device to "map it"
+            if lego_sensor.port == readFile("/sys/class/lego-sensor/" + str(dir) + "/address"):
                 lego_sensor.path = "/sys/class/lego-sensor/" + str(dir)
 
     def getBin(lego_sensor):

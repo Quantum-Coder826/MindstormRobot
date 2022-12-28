@@ -4,8 +4,4 @@ from robot.sensor import *
 
 brick = mindstorms()
 
-button = sensor(ports.in1)
-
-while True:
-    if button.isPressed():
-        brick.setLed(led.leftRed, 255)
+device = sensor(ports.in1)
