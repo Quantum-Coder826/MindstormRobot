@@ -40,8 +40,6 @@ class mindstorms:
     def setLed(lego_brick, target = 0, value = 255): # changes the brightness of a led
         writeFile(ledpath[target] + "/brightness", value)
 
-    # todo: figure out how the hell to read the buttons (https://docs.ev3dev.org/projects/lego-linux-drivers/en/ev3dev-stretch/ev3.html#buttons)
-
     def clearLeds(lego_brick): # turns off all leds
         for i in range(0,3):
             writeFile(ledpath[i] + "/brightness", "0")
@@ -51,6 +49,9 @@ class mindstorms:
         writeFile(ledpath[1] + "/brightness", "0")
         writeFile(ledpath[2] + "/brightness", "255")
         writeFile(ledpath[3] + "/brightness", "0")
+        
+    # todo: figure out how the hell to read the buttons (https://docs.ev3dev.org/projects/lego-linux-drivers/en/ev3dev-stretch/ev3.html#buttons)
+    
 
 class ports:
     # This class contains all default ev3 prot names
