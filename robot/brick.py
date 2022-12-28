@@ -53,7 +53,7 @@ class mindstorms:
         
     # get the key pressed on the brick
     def getKey(lego_brick):
-        buttons = open("/devinput/even1", "rb")
+        buttons = open("/dev/input/even1", "rb")
 
         buffer = buttons.read(32).hex()
         key = int(buffer[20:22], base=16)
