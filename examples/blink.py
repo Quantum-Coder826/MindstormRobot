@@ -11,6 +11,7 @@ brick = mindstorms()
 brick.clearLeds()   # trun off all leds
 
 while True:
+    sleep(1)
     brick.setLed(led.leftGreen, 255)    # trun on the leds
     brick.setLed(led.rightGreen, 255)
     sleep(1)                            # wait 1 second
