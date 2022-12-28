@@ -65,9 +65,6 @@ class mindstorms:
         buttons.close()
         return key, keyDown
         
-
-
-
 class ports:
     # This class contains all default ev3 prot names
     outA = "ev3-ports:outA"
