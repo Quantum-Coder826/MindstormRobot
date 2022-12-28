@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from os import listdir
 import atexit
+import signal
 
 motorpath = "/sys/class/tacho-motor"
 sensorpath = "/sys/class/lego-sensor"
@@ -50,8 +51,21 @@ class mindstorms:
         writeFile(ledpath[2] + "/brightness", "255")
         writeFile(ledpath[3] + "/brightness", "0")
         
-    # todo: figure out how the hell to read the buttons (https://docs.ev3dev.org/projects/lego-linux-drivers/en/ev3dev-stretch/ev3.html#buttons)
-    
+    # get the key pressed on the brick
+    def getKey(lego_brick):
+        buttons = open("/devinput/even1", "rb")
+
+        buffer = buttons.read(32).hex()
+        key = int(buffer[20:22], base=16)
+        if int(buffer[25:26], base=16) == 1:
+            keyDown = True
+        if int(buffer[25:26], base=16) == 0:
+            keyDown = False
+        
+        return key, keyDown
+        
+
+
 
 class ports:
     # This class contains all default ev3 prot names
