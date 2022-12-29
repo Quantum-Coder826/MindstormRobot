@@ -78,17 +78,19 @@ class mindstorms:
         else:
             return False
     
-    # get the maximum voltage of the battery
+    # get the maximum voltage of the battery and return in volts
     def maxBatteryVoltage(lego_brick): 
         volts = int(readFile("/sys/class/power_supply/lego-ev3-battery/voltage_max_design"))
         volts = float(volts / 1000000)
         return volts
 
+    # get the minimum battery voltage and retrun in volts
     def minBatteryVoltage(lego_brick):
         volts = int(readFile("/sys/class/power_supply/lego-ev3-battery/voltage_min_design"))
         volts = float(volts / 1000000)
         return volts
 
+    # get the current battery voltage and return in volts
     def batteryVoltage(lego_brick):
         volts = int(readFile("/sys/class/power_supply/leg-ev3-battery/voltage_now"))
         volts = float(volts / 1000000)
