@@ -66,7 +66,9 @@ class mindstorms:
     
     # The following functions are for the reading of information about the battery.
     def batteryCurrent(lego_brick):
-        return int(readFile("/sys/class/power_supply/lego-ev3-battery/current_now"))
+        current = int(readFile("/sys/class/power_supply/lego-ev3-battery/current_now"))
+        current = float(current / 1000000)
+        return current
     
     # returns True when the battery is a Li-ion else reteruns a false
     def isLiIon(lego_brick):
@@ -113,5 +115,14 @@ class led:
     leftRed = 1
     rightGreen = 2
     rightRed = 3
+
+class key:
+    # This class contains the keycodes of the front buttons of the ev3 brick
+    Back = 14
+    Center = 28
+    Up = 103
+    Left = 105
+    Right = 106
+    Down = 108
 
 atexit.register(exit_handler) # register the exit handler
