@@ -85,10 +85,14 @@ class mindstorms:
         return volts
 
     def minBatteryVoltage(lego_brick):
-        volts = int(readFile("/sys/class/power_supply/lego-ev3-battery/voltage_max_design"))
+        volts = int(readFile("/sys/class/power_supply/lego-ev3-battery/voltage_min_design"))
         volts = float(volts / 1000000)
         return volts
 
+    def batteryVoltage(lego_brick):
+        volts = int(readFile("/sys/class/power_supply/leg-ev3-battery/voltage_now"))
+        volts = float(volts / 1000000)
+        return volts
             
 class ports:
     # This class contains all default ev3 prot names
