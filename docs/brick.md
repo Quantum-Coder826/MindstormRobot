@@ -26,7 +26,11 @@ Will turn off the red led's and turnt both green led's to full brightness.
 This method will read all keys on the brick, this does not count for push-buttons connected to imput port. It only handles inpot form the 6 face keys.
 
 #### `getKey(lego_brick)`
-When this method is calld it will wait until a key on the brick is pressed or relesed. It will return two values a integer wicht contains the keycode and a bolian wich is True when a key was pressed and False when a key is realesed. The extra data class `keys` can be used to identify keypresses.
+When this method is calld it will wait until a key on the brick is pressed or relesed. It will return two values a integer wicht contains the keycode and a bolian wich is True when a key was pressed and False when a key is realesed. The extra data class `keys` can be used to identify keypresses. 
+
+> **_note_**
+When using key input with ev3dev install on the brick it is recomended to disable brickman to prefent unwanted inputs.
+
 The keycodes are:
 |Button|Keycode (int)|
 |---|---|
