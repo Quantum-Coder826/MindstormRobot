@@ -116,7 +116,7 @@ class led:
     rightGreen = 2
     rightRed = 3
 
-class key:
+class keys:
     # This class contains the keycodes of the front buttons of the ev3 brick
     Back = 14
     Center = 28
