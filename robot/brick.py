@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 from os import listdir
 import atexit
-import signal
 
 motorpath = "/sys/class/tacho-motor"
 sensorpath = "/sys/class/lego-sensor"
