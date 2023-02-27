@@ -1,5 +1,6 @@
 mod brick;
 
 fn main() {
-    println!("hello");
+    let battery_amps = brick::battery_current();
+    print!("{battery_amps}");
 }
