@@ -1,3 +1,7 @@
 .vscode
 test.*
-main.py
+
+
+# Added by cargo
+/.cargo
+/target
