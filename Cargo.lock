@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "mindstorm_robot"
+name = "MindstormRobot"
 version = "0.1.0"
