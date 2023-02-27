@@ -6,12 +6,28 @@
         {
             "label": "Cargo Build",
             "type": "shell",
-            "command": "cargo build"
+            "command": "cargo build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            }
         },
         {
             "label": "upload binary",
             "type": "shell",
-            "command": "scp -i ~/.ssh/ev3dev ${workspaceFolder}/target/armv5te-unknown-linux-musleabi/debug/${workspaceFolderBasename} robot@ev3dev.local:/home/robot/${workspaceFolderBasename}/"
+            "command": "scp -i ~/.ssh/ev3dev ${workspaceFolder}/target/armv5te-unknown-linux-musleabi/debug/${workspaceFolderBasename} robot@ev3dev.local:/home/robot/${workspaceFolderBasename}/",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            }
         },
         {
             "label": "build",
