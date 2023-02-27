@@ -1,0 +1,22 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Cargo Build",
+            "type": "shell",
+            "command": "cargo build"
+        },
+        {
+            "label": "upload binary",
+            "type": "shell",
+            "command": "scp -i ~/.ssh/ev3dev ${workspaceFolder}/target/armv5te-unknown-linux-musleabi/debug/${workspaceFolderBasename} robot@ev3dev.local:/home/robot/${workspaceFolderBasename}/"
+        },
+        {
+            "label": "build",
+            "dependsOrder": "sequence",
+            "dependsOn": ["Cargo Build", "upload binary"]
+        }
+    ]
+}
