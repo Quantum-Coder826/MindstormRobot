@@ -16,6 +16,16 @@ pub fn write_to_file(path: &str, buffer: &[u8]) -> std::io::Result<()> { // writ
 }
 
 // functions for interacting with the brick hardware.
+// controlling the leds
+static led_folders: &'static [&str] = &["led0:green:brick-status", "led0:red:brick-status", "led1:green:brick-status", "led1:red:brick-status"];
+static led_path: &'static str = "/sys/class/leds/";
+
+pub fn led_set_brightness(led: i8, brightness: i8) {
+    let full_path: &str = &(led_path.to_owned() + led_folders[led as usize]);
+    write_to_file(full_path, brightness);
+}
+
+// reading data from the battery.
 pub fn battery_current() -> f64 { // retun the current draw on the battery in amps
     let microamps: f64 = read_from_file("/sys/class/power_supply/lego-ev3-battery/current_now").parse().unwrap();
     let amps: f64 = microamps / 1000000.0;
