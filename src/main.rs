@@ -1,6 +1,5 @@
 mod brick;
 
 fn main() {
-    let battery_amps = brick::battery_current();
-    print!("{battery_amps}");
+    brick::led_set_brightness(1, &[2,5,5]);
 }
