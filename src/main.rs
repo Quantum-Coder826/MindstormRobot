@@ -1,5 +1,5 @@
 mod brick;
 
 fn main() {
-    brick::led_set_brightness(1, &[2,5,5]);
+    println!("{}", brick::file_read_int("/sys/class/tacho-motor/motor0/position"));
 }
