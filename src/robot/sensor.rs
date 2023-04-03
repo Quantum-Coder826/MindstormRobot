@@ -21,10 +21,10 @@ impl Sensor {
                 port: port.to_string(),
                 path: path_ret.clone(),
                 name: files::read_str(&(path_ret.clone() + "/driver_name")),
-                num_values: files::read_int(&(path_ret.clone() + "/num_values")) as u8,
+                available_modes: files::read_str(&(path_ret.clone() + "/modes")),
+                num_values: files::read_int(&(path_ret.clone() + "/num_values")) as u8, // all field from here change when fn set_mode is called
                 unit: files::read_str(&(path_ret.clone() + "/units")),
-                decimals: files::read_int(&(path_ret.clone() + "/decimals")) as u64,
-                available_modes: files::read_str(&(path_ret.clone() + "/modes"))
+                decimals: files::read_int(&(path_ret.clone() + "/decimals")) as u64
             }
     }
 
@@ -38,5 +38,17 @@ impl Sensor {
             }
         }
         panic!("Could not find any devices on port: {:?}", port) // panic cuz cannot find a device that should be connected
+    }
+
+    // methods for interacting with sensors
+    pub fn set_mode(mut self, mode: &str) {
+        if !self.available_modes.trim().contains(mode) {
+            panic!("Mode: {:?} is not a valid, valid modes are: {:?}", mode, self.available_modes);
+        }
+        files::write_str(&(self.path.clone() + "/mode"), mode);
+
+        self.num_values = files::read_int(&(self.path.clone() + "/num_values")) as u8;
+        self.unit = files::read_str(&(self.path.clone() + "/units"));
+        self.decimals = files::read_int(&(self.path.clone() + "/decimals")) as u64;
     }
 }
