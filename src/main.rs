@@ -1,6 +1,5 @@
 mod robot;
 use robot::brick;
-use robot::motor::Motor;
 use robot::sensor::Sensor;
 
 fn main() {
