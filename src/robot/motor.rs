@@ -1,8 +1,9 @@
 use crate::robot::brick;
 use std::io::{Error, Read, ErrorKind};
-use std::fs::{read_dir, ReadDir};
+use std::fs::read_dir;
 
 
+#[allow(dead_code)]
 pub struct Motor {
     port: String,
     path: String,
@@ -16,9 +17,16 @@ pub struct Motor {
 impl Motor {
     // methods for initializing class
     pub fn attatch(port: &str) -> Motor {
-        Motor { // TODO: add extra functions for constants
-            port: port.to_string(), 
-            path: Self::get_sysfs_path(port)
+        let path_ret: String = Self::get_sysfs_path(port); // NOTE: need to use the .clone() method to copy the value so we don't get a 'borrow of moved value' error
+
+        Motor {
+            port: port.to_string(),
+            path: path_ret.clone(),
+            count_per_rot: brick::read_int_file(&(path_ret.clone() + "count_per_rot")),
+            count_per_m: brick:: read_int_file(&(path_ret.clone() + "count_per_m")),
+            driver_name: brick::read_str_file(&(path_ret.clone() + "driver_name")),
+            available_commands: brick::read_str_file(&(path_ret.clone() + "commands")),
+            available_stop_actions: brick::read_str_file(&(path_ret.clone() + "stop_actions"))
         }
     }
 
