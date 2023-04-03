@@ -29,6 +29,7 @@ impl Motor {
         }
     }
 
+    #[allow(unused)]
     fn get_sysfs_path(port: &str) -> String {
         let paths = read_dir("/sys/class/tacho-motor/").unwrap();
 

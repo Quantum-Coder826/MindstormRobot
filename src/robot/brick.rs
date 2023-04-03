@@ -40,6 +40,7 @@ pub fn current_battery() -> f64 {
     return current_now;
 }
 
+#[allow(non_snake_case)]
 pub fn is_LiIon() -> bool {
     if files::read_str("/sys/class/power_supply/lego-ev3-battery/technology").trim() == "Li-ion" {
         return true;
