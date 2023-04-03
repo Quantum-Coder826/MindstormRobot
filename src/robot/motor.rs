@@ -42,13 +42,43 @@ impl Motor {
         panic!("Could not find any devices on port: {:?}", port) // panic cuz cannot find a device that should be connected
     }
 
-    // methods for controlling the tachio-motors
-    /* list of needed methods
-    run_direct() control the motor using the duty cycle
-    run_to_rel(angle, speed) run the motor to a relative specificed angel
-    run_to_abs(angle, speed) run the motor to a absolute angle
-    run_timed(time, speed, stop_action) run the motor for the specificd time and use the preset stopaction
-    stop(stop_action) stops the motor using the stop action
-    reset() resets all values related to the motor */
+    // methods to send commands to tacho motors
+    pub fn run_forever(self, speed_sp: i16) {
+        files::write_int(&(self.path.clone() + "/speed_sp"), &(speed_sp as i64));
+        files::write_str(&(self.path.clone() + "/command"), "run-forever");
+    }
+
+    pub fn run_abs_pos(self, angle_sp: i16, speed_sp: i16) {
+        files::write_int(&(self.path.clone() + "/speed_sp"), &(speed_sp as i64));
+        files::write_int(&(self.path.clone() + "/position_sp"), &(angle_sp as i64));
+        files::write_str(&(self.path.clone() + "/command"), "run-to-abs-pos");
+        return;
+    }
+
+    pub fn run_rel_pos(self, angle_sp: i16, speed_sp: i16) {
+        files::write_int(&(self.path.clone() + "/speed_sp"), &(speed_sp as i64));
+        files::write_int(&(self.path.clone() + "/position_sp"), &(angle_sp as i64));
+        files::write_str(&(self.path.clone() + "/command"), "run-to-rel-pos");
+        return;
+    }
+    
+    pub fn run_timed(self, time_sp: u64, speed_sp: i16) {
+        files::write_int(&(self.path.clone() + "/time_sp"), &(time_sp as i64));
+        files::write_int(&(self.path.clone() + "/speed_sp"), &(speed_sp as i64));
+        files::write_str(&(self.path.clone() + "/command"), "run-timed");    
+    }
+
+    pub fn run_duty(self, duty_sp: i8) {
+    if duty_sp < -100 || duty_sp > 100 { // var uty_sp must be in range -100 to 100
+        panic!("duty_sp is: {:?} must be in rage -100 to 100", duty_sp);
+    } else {
+        files::write_int(&(self.path.clone() + "/duty_cycle_sp"), &(duty_sp as i64));
+        files::write_str(&(self.path.clone() + "/command"), "run-direct");
+        return;
+    }}
+
+    pub fn stop(self) {
+        files::write_str(&(self.path.clone() + "/command"), "stop");
+    }
     
 }

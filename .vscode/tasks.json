@@ -27,12 +27,16 @@
                 "panel": "shared",
                 "showReuseMessage": true,
                 "clear": false
-            }
+            },
+            "problemMatcher": []
         },
         {
             "label": "build",
             "dependsOrder": "sequence",
-            "dependsOn": ["Cargo Build", "upload binary"]
+            "dependsOn": [
+                "Cargo Build",
+                "upload binary"
+            ]
         }
     ]
 }
