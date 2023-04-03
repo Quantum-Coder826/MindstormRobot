@@ -1,5 +1,5 @@
 use crate::robot::brick;
-use std::io::{Error, Read, ErrorKind};
+use std::io::Error;
 use std::fs::read_dir;
 
 
@@ -41,7 +41,5 @@ impl Motor {
     }
 
     // methods for controlling the tachio-motors
-    pub fn command(self, command: &str) {
-        brick::write_str_file(&(self.path + "command"), command); // TODO: Add error detection for wrong commands
-    }
+    
 }
