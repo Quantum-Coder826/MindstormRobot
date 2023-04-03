@@ -10,7 +10,7 @@ pub struct Motor {
 impl Motor {
     // methods for initializing class
     pub fn attatch(port: &str) -> Motor {
-        Motor { 
+        Motor { // TODO: add extra functions for constants
             port: port.to_string(), 
             path: Self::get_sysfs_path(port)
         }
@@ -30,6 +30,6 @@ impl Motor {
 
     // methods for controlling the tachio-motors
     pub fn command(self, command: &str) {
-        brick::write_str_file(&(self.path + "command"), command); // todo: Add error detection for wrong commands
+        brick::write_str_file(&(self.path + "command"), command); // TODO: Add error detection for wrong commands
     }
 }
