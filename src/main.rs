@@ -1,6 +1,7 @@
 mod robot;
-use robot::motor::Motor;
+use robot::brick;
+use std::{thread, time};
 
 fn main() {
-       let lage_Motor: Motor = Motor::attatch("ev3-ports:outA");
+       brick::init();
 }

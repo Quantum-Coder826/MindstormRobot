@@ -4,6 +4,7 @@ use std::fs::OpenOptions;
 use std::io::{BufReader, Read, Write};
 
 // functions for handeling file reads
+#[allow(unused)]
 pub fn read_str(path: &str) -> String {
     let file_result: Result<File, Error> = File::open(path);
     let file:File = match file_result {
@@ -17,6 +18,7 @@ pub fn read_str(path: &str) -> String {
     return data;
 }
 
+#[allow(unused)]
 pub fn read_int(path: &str) -> i64 {
     let file_result: Result<File, Error> = File::open(path);
     let file:File = match file_result {
@@ -33,6 +35,7 @@ pub fn read_int(path: &str) -> i64 {
 }
 
 // function for handeling file writes
+#[allow(unused)]
 pub fn write_str(path: &str, data: &str) {
     let file_result:Result<File, Error> = OpenOptions::new().write(true).open(path);
     let mut file:File = match file_result {
@@ -42,6 +45,7 @@ pub fn write_str(path: &str, data: &str) {
     file.write_all(format!("{}", data).as_bytes()).unwrap();
 }
 
+#[allow(unused)]
 pub fn write_int(path: &str, data: &i64) {
     let file_result:Result<File, Error> = OpenOptions::new().write(true).open(path);
     let mut file:File = match file_result {
