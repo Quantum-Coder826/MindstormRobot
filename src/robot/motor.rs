@@ -1,4 +1,4 @@
-use crate::robot::brick;
+use crate::robot::files;
 use std::io::Error;
 use std::fs::read_dir;
 
@@ -17,15 +17,15 @@ impl Motor {
     // methods for initializing class
     pub fn attatch(port: &str) -> Motor {
         let path_ret: String = Self::get_sysfs_path(port); // NOTE: need to use the .clone() method to copy the value so we don't get a 'borrow of moved value' error
-        brick::write_str_file(&(path_ret.clone() + "/command"), "reset");
+        (&(path_ret.clone() + "/command"), "reset");
 
         Motor {
             port: port.to_string(),
             path: path_ret.clone(),
-            count_per_rot: brick::read_int_file(&(path_ret.clone() + "/count_per_rot")), // NOTE: these are file/folder so need a '/' prefix
-            driver_name: brick::read_str_file(&(path_ret.clone() + "/driver_name")),
-            available_commands: brick::read_str_file(&(path_ret.clone() + "/commands")),
-            available_stop_actions: brick::read_str_file(&(path_ret.clone() + "/stop_actions"))
+            count_per_rot: files::read_int(&(path_ret.clone() + "/count_per_rot")), // NOTE: these are file/folder so need a '/' prefix
+            driver_name: files::read_str(&(path_ret.clone() + "/driver_name")),
+            available_commands: files::read_str(&(path_ret.clone() + "/commands")),
+            available_stop_actions: files::read_str(&(path_ret.clone() + "/stop_actions"))
         }
     }
 
@@ -34,7 +34,7 @@ impl Motor {
 
         for path in paths {
             let test_path: String = path.as_ref().unwrap().path().display().to_string() + "/address";
-            if brick::read_str_file(&test_path).trim() == port {
+            if files::read_str(&test_path).trim() == port {
                 return path.unwrap().path().display().to_string();
             }
         }
