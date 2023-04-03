@@ -5,8 +5,14 @@ use std::fs::{read_dir, ReadDir};
 
 pub struct Motor {
     port: String,
-    path: String
+    path: String,
+    count_per_rot: i64,
+    count_per_m: i64,
+    driver_name: String,
+    available_commands: String,
+    available_stop_actions: String
 }
+
 impl Motor {
     // methods for initializing class
     pub fn attatch(port: &str) -> Motor {
