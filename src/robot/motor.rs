@@ -3,7 +3,7 @@ use crate::robot::files;
 use std::fs::read_dir;
 
 pub struct Motor {
-    port: String,
+    pub port: String,
     path: String,
     count_per_rot: i64,
     pub name: String,
