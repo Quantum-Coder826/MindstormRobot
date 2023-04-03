@@ -6,7 +6,7 @@ pub struct Motor {
     port: String,
     path: String,
     count_per_rot: i64,
-    driver_name: String,
+    pub name: String,
     available_commands: String,
     available_stop_actions: String
 }
@@ -21,7 +21,7 @@ impl Motor {
             port: port.to_string(),
             path: path_ret.clone(),
             count_per_rot: files::read_int(&(path_ret.clone() + "/count_per_rot")), // NOTE: these are file/folder so need a '/' prefix
-            driver_name: files::read_str(&(path_ret.clone() + "/driver_name")),
+            name: files::read_str(&(path_ret.clone() + "/driver_name")),
             available_commands: files::read_str(&(path_ret.clone() + "/commands")),
             available_stop_actions: files::read_str(&(path_ret.clone() + "/stop_actions"))
         }
@@ -43,6 +43,7 @@ impl Motor {
     pub fn run_forever(self, speed_sp: i16) {
         files::write_int(&(self.path.clone() + "/speed_sp"), &(speed_sp as i64));
         files::write_str(&(self.path.clone() + "/command"), "run-forever");
+        return;
     }
 
     pub fn run_abs_pos(self, angle_sp: i16, speed_sp: i16) {
@@ -62,7 +63,8 @@ impl Motor {
     pub fn run_timed(self, time_sp: u64, speed_sp: i16) {
         files::write_int(&(self.path.clone() + "/time_sp"), &(time_sp as i64));
         files::write_int(&(self.path.clone() + "/speed_sp"), &(speed_sp as i64));
-        files::write_str(&(self.path.clone() + "/command"), "run-timed");    
+        files::write_str(&(self.path.clone() + "/command"), "run-timed");
+        return;
     }
 
     pub fn run_duty(self, duty_sp: i8) {
@@ -76,10 +78,12 @@ impl Motor {
 
     pub fn stop(self) {
         files::write_str(&(self.path.clone() + "/command"), "stop");
+        return;
     }
 
     pub fn reset(self) {
         files::write_str(&(self.path.clone() + "/command"), "reset");
+        return;
     }
     
 }

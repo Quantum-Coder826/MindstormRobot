@@ -1,11 +1,12 @@
 mod robot;
 use robot::brick;
 use robot::motor::Motor;
+use robot::sensor::Sensor;
 
 fn main() {
        brick::init();
 
-       let myMotor = Motor::attatch("ev3-ports:outA");
-       myMotor.run_duty(120);
+       let sonar = Sensor::attatch("ev3-ports:in4");
+       println!("{}", sonar.name);
 
 }
