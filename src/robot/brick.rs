@@ -1,3 +1,4 @@
+#![allow(dead_code)]
 use crate::robot::files;
 use std::fs::read_dir;
 

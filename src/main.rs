@@ -1,6 +1,6 @@
 mod robot;
 use robot::brick;
-use  robot::motor::Motor;
+use robot::motor::Motor;
 
 fn main() {
        brick::init();

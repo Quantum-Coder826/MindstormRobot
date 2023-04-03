@@ -1,9 +1,7 @@
+#![allow(dead_code)]
 use crate::robot::files;
-use std::io::Error;
 use std::fs::read_dir;
 
-
-#[allow(dead_code)]
 pub struct Motor {
     port: String,
     path: String,
@@ -29,7 +27,6 @@ impl Motor {
         }
     }
 
-    #[allow(unused)]
     fn get_sysfs_path(port: &str) -> String {
         let paths = read_dir("/sys/class/tacho-motor/").unwrap();
 
@@ -79,6 +76,10 @@ impl Motor {
 
     pub fn stop(self) {
         files::write_str(&(self.path.clone() + "/command"), "stop");
+    }
+
+    pub fn reset(self) {
+        files::write_str(&(self.path.clone() + "/command"), "reset");
     }
     
 }
