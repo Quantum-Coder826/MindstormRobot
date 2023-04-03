@@ -8,7 +8,6 @@ pub struct Motor {
     port: String,
     path: String,
     count_per_rot: i64,
-    count_per_m: i64,
     driver_name: String,
     available_commands: String,
     available_stop_actions: String
@@ -23,7 +22,6 @@ impl Motor {
             port: port.to_string(),
             path: path_ret.clone(),
             count_per_rot: brick::read_int_file(&(path_ret.clone() + "/count_per_rot")), // NOTE: these are file/folder so need a '/' prefix
-            count_per_m: brick:: read_int_file(&(path_ret.clone() + "/count_per_m")),
             driver_name: brick::read_str_file(&(path_ret.clone() + "/driver_name")),
             available_commands: brick::read_str_file(&(path_ret.clone() + "/commands")),
             available_stop_actions: brick::read_str_file(&(path_ret.clone() + "/stop_actions"))
