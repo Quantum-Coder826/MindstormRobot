@@ -3,6 +3,7 @@ use std::io::Error;
 use std::fs::File;
 use std::fs::OpenOptions;
 use std::io::{BufReader, Read, Write};
+use std::fs::read;
 
 // functions for handeling file reads
 pub fn read_str(path: &str) -> String {
@@ -33,7 +34,17 @@ pub fn read_int(path: &str) -> i64 {
     return data;
 }
 
-// function for handeling file writes
+// function for handeling binary file read
+pub fn read_bytes(path: &str) -> Vec<u8> {
+    let bytes_result:Result<Vec<u8>, Error> = read(path);
+    let bytes: Vec<u8> = match  bytes_result{
+        Ok(bytes) => bytes,
+        Err(error) => panic!("Faild to read file: {:?}, Error: {:?}", path, error)
+    };
+    return bytes;
+}
+
+// functions for handeling file writes
 pub fn write_str(path: &str, data: &str) {
     let file_result:Result<File, Error> = OpenOptions::new().write(true).open(path);
     let mut file:File = match file_result {
