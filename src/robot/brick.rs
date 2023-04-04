@@ -67,3 +67,16 @@ pub fn voltage_battery() -> f64 {
     let voltage_now:f64 = voltage_now_micro as f64 / 1000000 as f64;
     return voltage_now;
 }
+
+// these structs contain port definitions (made witout rust analyzer so might be borked)
+pub struct Port {
+    pub in1: "ev3-ports:in1",
+    pub in2: "ev3-ports:in2",
+    pub in3: "ev3-ports:in3",
+    pub in4: "ev3-ports:in4",
+
+    pub outA: "ev3-ports:outA",
+    pub outB: "ev3-ports:outB",
+    pub outC: "ev3-ports:outC",
+    pub outD: "ev3-ports:outD"
+}
