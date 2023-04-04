@@ -6,9 +6,9 @@ use std::fs::read_dir;
 #[allow(dead_code)]
 static  LED_PATHS:[&str; 4] = ["/sys/class/leds/led0:green:brick-status/brightness", "/sys/class/leds/led0:red:brick-status/brightness", "/sys/class/leds/led1:green:brick-status/brightness", "/sys/class/leds/led1:red:brick-status/brightness"];
 
-pub struct Brick {}
+pub struct brick {}
 
-impl Brick {
+impl brick {
     pub fn init() {
         Self::clear_led();
         Self::set_led(0, 255);

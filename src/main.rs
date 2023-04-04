@@ -1,8 +1,11 @@
 mod robot;
-use robot::brick::Brick;
-use robot::sensor::Sensor;
+use robot::brick::brick;
+use robot::files;
 
 fn main() {
-       Brick::init();
-       
+    brick::init();
+    loop {
+        let data = files::read_bytes("/dev/input/by-path/platform-gpio-keys.0-event");
+        println!("{:?}", data);
+    }
 }
