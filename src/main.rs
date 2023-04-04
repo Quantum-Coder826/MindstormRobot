@@ -5,7 +5,7 @@ use robot::sensor::Sensor;
 fn main() {
        brick::init();
 
-       let sonar = Sensor::attatch("ev3-ports:in4");
+       let sonar = Sensor::attatch(&Ports.in1);
        println!("{}", sonar.name);
 
 }
