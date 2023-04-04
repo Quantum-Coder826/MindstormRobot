@@ -18,6 +18,7 @@ pub fn init() {
         let path: String = path.as_ref().unwrap().path().display().to_string() + "/command";
         files::write_str(&path, "reset");
     }
+    // ? maby add a hasmap in a struct and use it to autodetect available ports, or just hande standard ev3brick hardware.
 }
 
 // TODO: add functions to read buttons
