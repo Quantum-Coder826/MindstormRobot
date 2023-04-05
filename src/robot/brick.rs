@@ -23,7 +23,13 @@ impl brick {
         }
     }
 
-    // TODO: add functions to read buttons
+    // for reading buttons need to read 32 values, index 10 contains linux key code, index 12 contains a bool that is true when the key is registerd as pressed.
+    pub fn keys() -> (u8, bool) {
+        let data: Vec<u8> = files::read_bytes("/dev/input/by-path/platform-gpio_keys-event", 32);
+        let mut key_is_pressed: bool = false;
+        if data[12] == 1 {key_is_pressed = true}
+        return (data[10], key_is_pressed);
+    }
 
     // functions for controlling the LED's
     pub fn clear_led() {
