@@ -35,17 +35,18 @@ pub fn read_int(path: &str) -> i64 {
 }
 
 // function for handeling binary file read
-pub fn read_bytes(path: &str) -> Vec<u8> {
+pub fn read_bytes(path: &str, buf_size: usize) -> Vec<u8> {
     let file_result: Result<File, Error> = File::open(path);
     let file:File = match  file_result {
         Ok(file) => file,
         Err(error) => panic!("Faild to read file: {:?}, Error: {:?}", path, error)
     };
     let mut file_buff: BufReader<File> = BufReader::new(file);
-    let mut bytes: Vec<u8> = vec![0; 64];
+    let mut bytes: Vec<u8> = vec![0; buf_size];
     file_buff.read_exact(&mut bytes);
     return bytes;
 }
+
 // functions for handeling file writes
 pub fn write_str(path: &str, data: &str) {
     let file_result:Result<File, Error> = OpenOptions::new().write(true).open(path);
