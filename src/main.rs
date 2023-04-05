@@ -4,8 +4,10 @@ use robot::files;
 
 fn main() {
     brick::init();
-    loop {
-        let data = files::read_bytes("/dev/input/by-path/platform-gpio-keys.0-event");
-        println!("{:?}", data);
+    
+    let data: Vec<u8> = files::read_bytes("/dev/input/event1");
+    println!("got data");
+    for byte in data {
+        println!("{}", byte);
     }
 }

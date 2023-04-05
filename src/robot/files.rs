@@ -1,9 +1,9 @@
 #![allow(unused)]
+use std::io::Bytes;
 use std::io::Error;
 use std::fs::File;
 use std::fs::OpenOptions;
 use std::io::{BufReader, Read, Write};
-use std::fs::read;
 
 // functions for handeling file reads
 pub fn read_str(path: &str) -> String {
@@ -36,14 +36,16 @@ pub fn read_int(path: &str) -> i64 {
 
 // function for handeling binary file read
 pub fn read_bytes(path: &str) -> Vec<u8> {
-    let bytes_result:Result<Vec<u8>, Error> = read(path);
-    let bytes: Vec<u8> = match  bytes_result{
-        Ok(bytes) => bytes,
+    let file_result: Result<File, Error> = File::open(path);
+    let file:File = match  file_result {
+        Ok(file) => file,
         Err(error) => panic!("Faild to read file: {:?}, Error: {:?}", path, error)
     };
+    let mut file_buff: BufReader<File> = BufReader::new(file);
+    let mut bytes: Vec<u8> = vec![0; 64];
+    file_buff.read_exact(&mut bytes);
     return bytes;
 }
-
 // functions for handeling file writes
 pub fn write_str(path: &str, data: &str) {
     let file_result:Result<File, Error> = OpenOptions::new().write(true).open(path);
