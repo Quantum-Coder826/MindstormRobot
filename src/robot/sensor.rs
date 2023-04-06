@@ -2,6 +2,11 @@
 use crate::robot::files;
 use std::fs::read_dir;
 
+#[derive(Debug)]
+pub enum SensorReturn<I, F> {
+    Int(I),
+    Float(F)
+}
 pub struct Sensor {
     pub port: String,
     path:String,
@@ -41,7 +46,7 @@ impl Sensor {
     }
 
     // methods for interacting with sensors
-    pub fn set_mode(mut self, mode: &str) {
+    pub fn set_mode(&mut self, mode: &str) {
         if !self.available_modes.trim().contains(mode) {
             panic!("Mode: {:?} is not a valid, valid modes are: {:?}", mode, self.available_modes);
         }
@@ -50,5 +55,21 @@ impl Sensor {
         self.num_values = files::read_int(&(self.path.clone() + "/num_values")) as u8;
         self.unit = files::read_str(&(self.path.clone() + "/units"));
         self.decimals = files::read_int(&(self.path.clone() + "/decimals")) as u64;
+    }
+
+
+    pub fn get_value(&self, value: u8) -> SensorReturn<i64, f64>{
+        let data_raw: i64 = files::read_int(&(self.path.clone() + "/value" + &value.to_string()));
+        if self.decimals == 1 {
+            let mut i: u64 = 0;
+            let mut data:f64 = data_raw as f64;
+            while i < self.decimals {
+                data = data / 10.0;
+                i = i + 1;
+            }
+            return SensorReturn::Float(data);
+        } else {
+            return SensorReturn::Int(data_raw);
+        }
     }
 }
