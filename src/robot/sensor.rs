@@ -57,7 +57,6 @@ impl Sensor {
         self.decimals = files::read_int(&(self.path.clone() + "/decimals")) as u64;
     }
 
-
     pub fn get_value(&self, value: u8) -> SensorReturn<i64, f64>{
         let data_raw: i64 = files::read_int(&(self.path.clone() + "/value" + &value.to_string()));
         if self.decimals == 1 {
