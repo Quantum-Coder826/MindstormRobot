@@ -59,6 +59,11 @@ impl Motor {
         files::write_str(&(self.path.clone() + "/command"), "run-to-rel-pos");
         return;
     }
+
+    pub fn run_rot_count(&self, count: u8, speed_sp: i16) {
+        let angle_sp: i16 = (self.count_per_rot.clone() * count as i64) as i16;
+        Self::run_abs_pos(&self, angle_sp, speed_sp);
+    }
     
     pub fn run_timed(&self, time_sp: u64, speed_sp: i16) {
         files::write_int(&(self.path.clone() + "/time_sp"), &(time_sp as i64));
@@ -84,6 +89,15 @@ impl Motor {
     pub fn reset(&self) {
         files::write_str(&(self.path.clone() + "/command"), "reset");
         return;
+    }
+
+    // methods for getting data from motor
+    pub fn postion(&self) -> i64 {
+        return files::read_int(&(self.path.clone() + "/position"));
+    }
+
+    pub fn speed(&self) -> i64 {
+        return files::read_int(&(self.path.clone() + "/speed"));
     }
     
 }
