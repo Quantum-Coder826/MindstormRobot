@@ -1,6 +1,8 @@
 #![allow(dead_code)]
 use crate::robot::files;
 use std::fs::read_dir;
+use ctrlc;
+use std::process::exit;
 
 // these function will handel the ev3 brick hardware
 #[allow(dead_code)]
@@ -18,9 +20,22 @@ impl brick {
         let paths = read_dir("/sys/class/tacho-motor/").unwrap();
 
         for path in paths {
-        let path: String = path.as_ref().unwrap().path().display().to_string() + "/command";
-        files::write_str(&path, "reset");
+            let path: String = path.as_ref().unwrap().path().display().to_string() + "/command";
+            files::write_str(&path, "reset");
         }
+        ctrlc::set_handler(move || {
+            Self::exit()
+        }).expect("failed setting exit handeler");
+
+    }
+
+    pub fn reset() {
+        Self::init(); // init() does already wat we need to do so wrap it
+    }
+
+    pub fn exit() {
+        println!("exiting");
+        exit(0);
     }
 
     // for reading buttons need to read 32 values, index 10 contains linux key code, index 12 contains a bool that is true when the key is registerd as pressed.

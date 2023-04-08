@@ -63,6 +63,7 @@ impl Motor {
     pub fn run_rot_count(&self, count: u8, speed_sp: i16) {
         let angle_sp: i16 = (self.count_per_rot.clone() * count as i64) as i16;
         Self::run_abs_pos(&self, angle_sp, speed_sp);
+        return;
     }
     
     pub fn run_timed(&self, time_sp: u64, speed_sp: i16) {
@@ -98,6 +99,19 @@ impl Motor {
 
     pub fn speed(&self) -> i64 {
         return files::read_int(&(self.path.clone() + "/speed"));
+    }
+
+    pub fn state(&self) -> String {
+        return files::read_str(&(self.path.clone() + "/state")).trim().to_string();
+    }
+
+    // methods for changing motor variables
+    pub fn set_stop_action(&self, action: &str) {
+        if !self.available_stop_actions.contains(action) {
+            panic!("Selected stop acation: {} is invalid, valid actions are: {}", action, self.available_stop_actions);
+        }
+        files::write_str(&(self.path.clone() + "/stop_action"), action);
+        return;
     }
     
 }
