@@ -18,7 +18,7 @@ impl brick {
         ctrlc::set_handler(move || {
             Self::exit()
         }).expect("failed setting exit handeler");
-
+        println!("init")
     }
 
     pub fn reset() {

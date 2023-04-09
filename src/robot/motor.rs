@@ -8,7 +8,8 @@ pub struct Motor {
     count_per_rot: i64,
     pub name: String,
     available_commands: String,
-    available_stop_actions: String
+    available_stop_actions: String,
+    polarity: String
 }
 
 impl Motor {
@@ -23,7 +24,8 @@ impl Motor {
             count_per_rot: files::read_int(&(path_ret.clone() + "/count_per_rot")), // NOTE: these are file/folder so need a '/' prefix
             name: files::read_str(&(path_ret.clone() + "/driver_name")),
             available_commands: files::read_str(&(path_ret.clone() + "/commands")),
-            available_stop_actions: files::read_str(&(path_ret.clone() + "/stop_actions"))
+            available_stop_actions: files::read_str(&(path_ret.clone() + "/stop_actions")),
+            polarity: files::read_str(&(path_ret.clone() + "/polarity"))
         }
     }
 
@@ -113,5 +115,16 @@ impl Motor {
         files::write_str(&(self.path.clone() + "/stop_action"), action);
         return;
     }
+
+    pub fn set_pol_normal(&mut self) {
+        files::write_str(&(self.path.clone() + "/polarity"), "normal");
+        self.polarity = "normal".to_string();
+
+    }
     
+    pub fn set_pol_inverted(&mut self) {
+        files::write_str(&(self.path.clone() + "/polarity"), "inversed");
+        self.polarity = "inversed".to_string();
+    }
+
 }
