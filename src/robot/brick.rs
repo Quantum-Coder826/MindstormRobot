@@ -13,6 +13,15 @@ pub struct brick {}
 
 impl brick {
     pub fn init() {
+        Self::reset();
+
+        ctrlc::set_handler(move || {
+            Self::exit()
+        }).expect("failed setting exit handeler");
+
+    }
+
+    pub fn reset() {
         Self::clear_led();
         Self::set_led(0, 255);
         Self::set_led(2, 255);
@@ -23,17 +32,10 @@ impl brick {
             let path: String = path.as_ref().unwrap().path().display().to_string() + "/command";
             files::write_str(&path, "reset");
         }
-        ctrlc::set_handler(move || {
-            Self::exit()
-        }).expect("failed setting exit handeler");
-
-    }
-
-    pub fn reset() {
-        Self::init(); // init() does already wat we need to do so wrap it
     }
 
     pub fn exit() {
+        Self::reset();
         println!("exiting");
         exit(0);
     }
