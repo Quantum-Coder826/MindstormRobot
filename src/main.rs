@@ -17,12 +17,17 @@ fn main() {
             SensorReturn::Int(heading) => heading,
             SensorReturn::Float(_) => 0
         };
+
         if heading > 2 {
-            println!("right");
+            left_motor.run_duty(20);
+            right_motor.run_duty(-20);
         } else if heading < -2 {
-            println!("left");
+            left_motor.run_duty(-20);
+            right_motor.run_duty(20);
         } else {
-            println!("middle");
+            left_motor.run_duty(0);
+            right_motor.run_duty(0);
         }
+
     }
 }

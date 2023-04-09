@@ -2,7 +2,7 @@
 All methods in the brick.rs file are resposible for controlling the hardware on the lego mindstorms ev3 intelligent brick (45500).
 
 
-### available metods and there use:
+## available metods and there use:
 ### ```init()```
 Init initializes the brick it will set both green led's to full brightness and send the reset command to all connected motors.
 
