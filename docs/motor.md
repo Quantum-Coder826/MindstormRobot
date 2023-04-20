@@ -59,9 +59,10 @@ This method will set the stop action of the motor there are mutible values:
 |hold|The motor will brake, and actively try to stay on it's current postions.|
 
 ### ```set_pol_normal(&mut self)```
-Sets the polaraty of the motor to normal. The image shows the rotation direction:
+Sets the polaraty of the motor to normal, which means that a positive duty or speed setpoint whill lead to the rotation derection:
 ![normal Polataty](/pictures/LEGO_95658_normal_pol.png)
 
 ### ```set_pol_inverted(&mut self)```
-Sets the polaraty of the motor to be reversed. The image shows the rotation direction:
+Sets the polaraty of the motor to be reversed, which means that duty or speed setpoint whill lead to the rotation derection:
 ![normal Polataty](/pictures/LEGO_95658_inverted_pol.png)
+this feature is usful when a geartrain is connected to the motor and you want speed and duty setpoint to still make sense in the program.
