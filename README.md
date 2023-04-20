@@ -22,8 +22,20 @@ the documentation is broken down in separate pages for each file of the program.
 
 Not all files are coverd this is due to these files not containing essential information about using this codebase to program a lego mindstorms ev3.
 
-# Exsamples/snippets
-More exsamples and snippets can be found [here](/docs/examples.md).
+# Examples/snippets
+More examples and snippets can be found [here](/docs/examples.md).
+
+# Building
+All you need to do is to pull the git repository and run the following command:
+```
+rustup target add armv5te-unknown-linux-musleabi
+```
+
+After that you should be ready to compile and send the code to the ev3 intelligent brick.
+This can be done with the `ctrl + shift + b` keybind or by running the `cargo build` command.
+
+## extra's
+Optionally you could generate a SSH-keypair on the ev3 intelligent brick and upload your public key to the `.ssh` folder of your pc so you dont need to enter the username and password for the brick each time you upload the program.
 
 ### todo's
 - [ ] Change sensor.get_value to have separeate functions for retuning ints or floats
