@@ -38,4 +38,5 @@ This can be done with the `ctrl + shift + b` keybind or by running the `cargo bu
 Optionally you could generate a SSH-keypair on the ev3 intelligent brick and upload your public key to the `.ssh` folder of your pc so you dont need to enter the username and password for the brick each time you upload the program.
 
 ### todo's
-- [ ] Change sensor.get_value to have separeate functions for retuning ints or floats
+- [ ] Change `sensor.get_value()` to have separeate functions for retuning ints or floats
+- [ ] Change `brick.keys()` to have a timeout or imidatly return a value.
