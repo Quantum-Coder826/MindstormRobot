@@ -4,7 +4,13 @@ All methods in the brick.rs file are resposible for controlling the hardware on 
 
 ## available metods and there use:
 ### ```init()```
-Init initializes the brick it will set both green led's to full brightness and send the reset command to all connected motors.
+Init initializes the brick it will set both green led's to full brightness and send the reset command to all connected motors. Also is adds a exit handeler what will do the same steps but on program termination.
+
+### ```reset()```
+Restets the brick
+
+### ```exit()```
+call this method to exit the program, it will call `brick::reset()` and terminate the program.
 
 ### ```keys() -> (u8, bool)```
 this method retuns a thruple that contains a u8 wich is the unix keycode what was pressed, and the boolian is true when the key was registerd as being pressed down.

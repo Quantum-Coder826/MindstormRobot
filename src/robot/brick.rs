@@ -36,7 +36,7 @@ impl brick {
 
     pub fn exit() {
         Self::reset();
-        println!("exiting");
+        println!("exit");
         exit(0);
     }
 
