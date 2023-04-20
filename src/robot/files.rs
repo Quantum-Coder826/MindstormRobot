@@ -1,5 +1,3 @@
-#![allow(unused)]
-use std::io::Bytes;
 use std::io::Error;
 use std::fs::File;
 use std::fs::OpenOptions;
@@ -43,7 +41,7 @@ pub fn read_bytes(path: &str, buf_size: usize) -> Vec<u8> {
     };
     let mut file_buff: BufReader<File> = BufReader::new(file);
     let mut bytes: Vec<u8> = vec![0; buf_size];
-    file_buff.read_exact(&mut bytes);
+    let _ = file_buff.read_exact(&mut bytes);
     return bytes;
 }
 

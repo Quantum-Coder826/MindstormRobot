@@ -13,6 +13,7 @@ fn main() {
     brick::init();
 }
 ```
+
 # Docs
 the documentation is broken down in separate pages for each file of the program. All file can be found here:
 - [brick.rs](/docs/brick.md)
