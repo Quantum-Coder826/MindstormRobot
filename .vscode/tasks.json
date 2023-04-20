@@ -4,6 +4,7 @@
     "version": "2.0.0",
     "tasks": [
         {
+            // the cargo build command
             "label": "Cargo Build",
             "type": "shell",
             "command": "cargo build",
@@ -17,6 +18,8 @@
             }
         },
         {
+            // Used to upload the executable file to te Mindstorms.
+            // I recommend to setup a public and privat keypair to the brick and your PC os scp stops asking you for the username and password of the brick.
             "label": "upload binary",
             "type": "shell",
             "command": "scp -i ~/.ssh/ev3dev ${workspaceFolder}/target/armv5te-unknown-linux-musleabi/debug/${workspaceFolderBasename} robot@ev3dev.local:/home/robot/${workspaceFolderBasename}/",
@@ -31,6 +34,7 @@
             "problemMatcher": []
         },
         {
+            // compound task used to compile and then upload, it is bound to the <ctrl + shift + B> keybind or otherwize the keybind you have set to a build task
             "label": "build",
             "dependsOrder": "sequence",
             "dependsOn": [
