@@ -57,3 +57,11 @@ This method will set the stop action of the motor there are mutible values:
 |coast|Removes power from the motor. The motor will freely coast to a stop.|
 |brake|Actively try to stop the motor|
 |hold|The motor will brake, and actively try to stay on it's current postions.|
+
+### ```set_pol_normal(&mut self)```
+Sets the polaraty of the motor to normal. The image shows the rotation direction:
+![normal Polataty](/pictures/LEGO_95658_normal_pol.png)
+
+### ```set_pol_inverted(&mut self)```
+Sets the polaraty of the motor to be reversed. The image shows the rotation direction:
+![normal Polataty](/pictures/LEGO_95658_inverted_pol.png)
