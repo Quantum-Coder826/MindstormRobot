@@ -14,8 +14,8 @@ fn main() {
 
     let keys_remote: [[i8; 2]; 12] = [[0,0],[50,0],[-50,0],[0,50],[0,-50],[50,50],[50,-50],[-50,50],[-50,-50],[0,0],[0,0],[0,0]];
 
-    let left_motor: Motor = Motor::attatch("ev3-ports:outB");
-    let right_motor: Motor = Motor::attatch("ev3-ports:outC");
+    let mut left_motor: Motor = Motor::attatch("ev3-ports:outB");
+    let mut right_motor: Motor = Motor::attatch("ev3-ports:outC");
     
     let mut ir: Sensor = Sensor::attatch("ev3-ports:in4");
     ir.set_mode("IR-REMOTE");
@@ -49,8 +49,8 @@ use robot::sensor::{Sensor, SensorReturn};
 fn main() {
     brick::init();
 
-    let left_motor: Motor = Motor::attatch("ev3-ports:outB");
-    let right_motor: Motor = Motor::attatch("ev3-ports:outC");
+    let mut left_motor: Motor = Motor::attatch("ev3-ports:outB");
+    let mut right_motor: Motor = Motor::attatch("ev3-ports:outC");
 
     let mut ir: Sensor = Sensor::attatch("ev3-ports:in4");
     ir.set_mode("IR-SEEK");
