@@ -19,10 +19,11 @@ the documentation is broken down in separate pages for each file of the program.
 - [motor.rs](/docs/motor.md)
 - [sensor.rs](/docs/sensor.md)
 
-More exsamples and snippets can be found [here](/docs/examples.md)
 
 Not all files are coverd this is due to these files not containing essential information about using this codebase to program a lego mindstorms ev3.
 
+# Exsamples/snippets
+More exsamples and snippets can be found [here](/docs/examples.md).
 
 ### todo's
 - [ ] Change sensor.get_value to have separeate functions for retuning ints or floats
