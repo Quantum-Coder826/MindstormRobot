@@ -11,6 +11,10 @@ use robot::sensor::{Sensor, SensorReturn};
 
 fn main() {
     brick::init();
+
+    printnl!("hello, world!");
+
+    brick::exit();
 }
 ```
 

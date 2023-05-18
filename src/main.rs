@@ -7,7 +7,7 @@ fn main() {
     brick::init();
 
     let keys_remote: [[i8; 2]; 12] = [[0,0],[1,0],[-1,0],[0,1],[0,-1],[1,1],[1,-1],[-1,1],[-1,-1],[0,0],[0,0],[0,0]];
-    let mut duty_sp: i8 = 40;
+    let duty_sp: i8 = 40;
 
     let mut left_motor: Motor = Motor::attatch("ev3-ports:outA");
     let mut right_motor: Motor = Motor::attatch("ev3-ports:outD");
